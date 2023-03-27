@@ -1,11 +1,11 @@
 {
-    "liveServer.settings.port": 5501,
+    "liveServer.settings.port": 5500,
     "liveServer.settings.root": "/",
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.https": {
       "enable": true,
-      "cert": "/Users/lindashao/Desktop/abc2022/phone/localhost.pem",
-      "key": "/Users/lindashao/Desktop/abc2022/phone/localhost.key",
+      "cert": "/Users/lindashao/Desktop/OpenProjectDrawing/phone/localhost.pem",
+      "key": "/Users/lindashao/Desktop/OpenProjectDrawing/phone/localhost.key",
       "passphrase": "12345"
     }
   }
