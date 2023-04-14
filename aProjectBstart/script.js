@@ -21,12 +21,12 @@ if(window.mobileAndTabletcheck()){
 
 
 function setup() {
-    let canvas = createCanvas(400,700);
+    let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("canvasContainer");
   }
   
-  function draw() {
-    circle(30,30,30);
+function draw() {
+    circle(mouseX,mouseY,30);
   }
 
 
@@ -56,9 +56,8 @@ gain.connect(destination);
 
 let oscillatorStarted = false;
 
-// // initialise the volume:
-// // we divide the value from the slider by 100 to bring it back to
-// // a value between 0 and 1
+
+
 gain.gain.value = 1;
 
 let minHz = 65;
