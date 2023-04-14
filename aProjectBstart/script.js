@@ -36,7 +36,7 @@ function setup() {
 function draw() {
     fill(200,100,120);
     circle(40,40,50);
-    circle(xc,yc,30);
+    circle(a,b,30);
   }
 
 function map(value, x1, y1, x2, y2){
