@@ -26,7 +26,7 @@ function setup() {
   }
   
 function draw() {
-    circle(30,20,30);
+    circle(mappedHertz,20,30);
   }
 
 
