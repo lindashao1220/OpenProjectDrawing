@@ -88,6 +88,22 @@ let mappedHertz = map(1, 0, 100, minHz, maxHz);
 oscillator.frequency.value = mappedHertz;
 hertzDisplay.innerHTML = mappedHertz;
 
+//   // on button click event
+// on.addEventListener("click", ()=>{
+//     if(!oscillatorStarted){
+//         oscillator.start(0);
+//         oscillatorStarted = true;
+//     }
+
+//     // instead of setting full volume:
+//     // gain.gain.value = 1;
+//     // let us stay true to the volume slider:
+//     gain.gain.value = 1;
+// });
+
+// off.addEventListener("click", ()=>{
+//     gain.gain.value = 0;
+// });
 
 let playing = false;
 toggle.addEventListener("click", ()=>{
@@ -106,6 +122,10 @@ toggle.addEventListener("click", ()=>{
     }
 })
 
+// volumeRange.addEventListener("input", ()=>{
+//     gain.gain.value = volumeInput.value/100;
+//   })
+
 
 let showDebug = false;
 let debugButton = document.getElementById("debugbutton");
@@ -117,6 +137,12 @@ debugButton.addEventListener("click", ()=>{
 })
 
 
+
+// let btn = document.getElementById("button")
+
+// // if ( location.protocol != "https:" ) {
+// //     location.href = "https:" + window.location.href.substring( window.location.protocol.length );
+// // }
 function permission() {
     document.getElementById("gyro-text").innerHTML = "getting access to gyroscope.";
 
@@ -129,6 +155,12 @@ function permission() {
                 // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("sound-interface").style.display = "block";
+                // if(!oscillatorStarted){
+                //     oscillator.start(0);
+                //     oscillatorStarted = true;
+                // }
+                // gain.gain.value = 1;
+
 
 
 
@@ -137,16 +169,11 @@ function permission() {
                     document.getElementById("beta").innerHTML = event.beta;
                     document.getElementById("gamma").innerHTML = event.gamma;
 
+                    let newHertz = map(Math.abs(event.gamma), 0, 90, minHz, maxHz);
                     
-                    // jean solution
-                    if (Math.abs(event.gamma) <= 10 && Math.abs(event.beta) > 170 ) {
-                        
-                        oscillator.frequency.value = 400;
-                        hertzDisplay.innerHTML = Math.round(400)
-                    } else {
-                        oscillator.frequency.value = 65;
-                        hertzDisplay.innerHTML = Math.round(65)
-                    }
+                    oscillator.frequency.value = newHertz;
+                    hertzDisplay.innerHTML = Math.round(newHertz)
+
 
                 });
                 window.addEventListener('devicemotion', (event) => {
@@ -160,7 +187,10 @@ function permission() {
         })
             .catch( console.error )
     } else {
+        // alert( "DeviceMotionEvent is not defined" );
+        // document.getElementById('doeSupported').innerText = 'still no';
         document.getElementById("gyro-text").innerHTML = "Cannot access your phone's gyroscope.";
 
     }
 }
+// btn.addEventListener( "click", permission );
