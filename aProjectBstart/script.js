@@ -106,13 +106,11 @@ function draw() {
     y = map(b, -90, 90, 0, height);
 
 
-
-  
     // Add a new particle to the system every frame
     ps.addParticle(x, y, random(10, 20));
     
     // Apply a force to all particles in the system based on the mouse position
-    let mouseForce = createVector(x - width/2, mouseY - y/2);
+    let mouseForce = createVector(x - width/2, y - y/2);
     mouseForce.mult(0.001);
     ps.applyForce(mouseForce);
     
