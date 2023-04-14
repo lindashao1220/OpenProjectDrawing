@@ -4,7 +4,7 @@ let btn = document.getElementById("button")
 //     location.href = "https:" + window.location.href.substring( window.location.protocol.length );
 // }
 function permission () {
-    // document.getElementById('doeSupported').innerText = 'asking';
+    document.getElementById('doeSupported').innerText = 'asking';
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
@@ -33,13 +33,4 @@ function permission () {
         document.getElementById('doeSupported').innerText = 'still no';
     }
 }
-
-
-
 btn.addEventListener( "click", permission );
-
-
-
-
-
-
