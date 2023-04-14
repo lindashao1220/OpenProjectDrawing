@@ -29,11 +29,12 @@ if(window.mobileAndTabletcheck()){
 function setup() {
     xc = constrain(a, 0, windowWidth);
     yx = constrain(b, 0, windowHeight);
-    let canvas = createCanvas(700, 800);
+    let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("canvasContainer");
   }
   
 function draw() {
+    fill(200,100,120);
     circle(40,40,50);
     circle(xc,yc,30);
   }
