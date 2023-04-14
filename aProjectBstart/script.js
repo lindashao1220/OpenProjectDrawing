@@ -21,7 +21,7 @@ if(window.mobileAndTabletcheck()){
 
 
 function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight);
+    let canvas = createCanvas(700, 800);
     canvas.parent("canvasContainer");
   }
   
