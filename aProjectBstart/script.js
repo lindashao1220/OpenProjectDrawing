@@ -26,7 +26,7 @@ function setup() {
   }
   
 function draw() {
-    circle(mouseX,mouseY,30);
+    circle(30,20,30);
   }
 
 
