@@ -34,7 +34,7 @@ function setup() {
   }
   
 function draw() {
-    fill(200,100,120);
+    fill(100,100,120);
     circle(40,40,b);
     rect(100,200,20,40)
     circle(a,b,30);
@@ -69,15 +69,16 @@ function permission() {
 
 
                 window.addEventListener('deviceorientation', (event) => {
-                    document.getElementById("alpha").innerHTML = event.alpha;
-                    document.getElementById("beta").innerHTML = event.beta;
-                    document.getElementById("gamma").innerHTML = event.gamma;
-                    // document.getElementById("gamma").innerHTML = xc;
-
                     a = event.alpha;
                     b = event.beta;
                     g = event.gamma;
 
+                    document.getElementById("alpha").innerHTML = a;
+                    document.getElementById("beta").innerHTML = b;
+                    document.getElementById("gamma").innerHTML = g;
+                    // document.getElementById("gamma").innerHTML = xc;
+
+                   
 
                 });
                 window.addEventListener('devicemotion', (event) => {
