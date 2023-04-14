@@ -39,88 +39,9 @@ function draw() {
 
 
 
-
-let on = document.getElementById("on");
-let off = document.getElementById("off");
-let toggle = document.getElementById("onofftoggle");
-
-let hertzDisplay = document.getElementById("hertzDisplay");
-let minSlider = document.getElementById("min");
-let minLabel = document.getElementById("min-label");
-let maxSlider = document.getElementById("max");
-let maxLabel = document.getElementById("max-label");
-
-let context = new AudioContext();
-let destination = context.destination;
-
-let oscillator = context.createOscillator();
-oscillator.type = "triangle";
-oscillator.frequency.value = 440;
-
-let gain = context.createGain();
-
-oscillator.connect(gain);
-gain.connect(destination);
-
-let oscillatorStarted = false;
-
-
-
-gain.gain.value = 1;
-
-let minHz = 65;
-let maxHz = 1050;
-let initalMin = 65;
-let initalMax = 1050
-minSlider.min = minHz;
-minSlider.max = maxHz;
-minSlider.value = initalMin;
-minLabel.innerHTML = initalMin;
-minHz = initalMin;
-
-maxSlider.min = minHz;
-maxSlider.max = maxHz;
-maxSlider.value = initalMax;
-maxLabel.innerHTML = initalMax;
-maxHz = initalMax;
-
-
-minSlider.addEventListener("input", ()=>{
-    minHz = Number(minSlider.value);
-    minLabel.innerHTML = minSlider.value;
-})
-maxSlider.addEventListener("input", ()=>{
-    maxHz = Number(maxSlider.value);
-    maxLabel.innerHTML = maxSlider.value;
-})
-
-// let midHz = (minHz + maxHz)/2;
 function map(value, x1, y1, x2, y2){
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
   }
-
-let mappedHertz = map(1, 0, 100, minHz, maxHz);
-// console.log("mapped hertz is", mappedHertz)
-oscillator.frequency.value = mappedHertz;
-hertzDisplay.innerHTML = mappedHertz;
-
-
-let playing = false;
-toggle.addEventListener("click", ()=>{
-    if(playing){
-        gain.gain.value = 0;
-        playing = false;
-        toggle.innerHTML = "🔊";
-    }else{
-        if(!oscillatorStarted){
-            oscillator.start(0);
-            oscillatorStarted = true;
-        }
-        gain.gain.value = 1;
-        playing = true;
-        toggle.innerHTML = "🔇";
-    }
-})
 
 
 let showDebug = false;
@@ -129,7 +50,6 @@ let debugInfo = document.getElementById("debug");
 debugButton.addEventListener("click", ()=>{
     showDebug = !showDebug;
     debugInfo.style.display = showDebug?"block":"none";
-    
 })
 
 
@@ -145,28 +65,21 @@ function permission() {
             if ( response == "granted" ) {
                 // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
-                document.getElementById("sound-interface").style.display = "block";
 
 
                 window.addEventListener('deviceorientation', (event) => {
                     document.getElementById("alpha").innerHTML = event.alpha;
                     document.getElementById("beta").innerHTML = event.beta;
-                    // document.getElementById("gamma").innerHTML = event.gamma;
-                    document.getElementById("gamma").innerHTML = xc;
+                    document.getElementById("gamma").innerHTML = event.gamma;
+                    // document.getElementById("gamma").innerHTML = xc;
 
                     a = event.alpha;
                     b = event.beta;
                     g = event.gamma;
 
-                    newHertz = map(Math.abs(event.gamma), 0, 90, minHz, maxHz);
-                    
-                    oscillator.frequency.value = newHertz;
-                    hertzDisplay.innerHTML = Math.round(newHertz)
-
 
                 });
                 window.addEventListener('devicemotion', (event) => {
-                    // console.log(`${event.acceleration.x} m/s2`);
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
                 });
