@@ -4,6 +4,8 @@ let newHertz;
 let a;
 let b;
 let g;
+let xc;
+let yc;
 
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
@@ -25,12 +27,14 @@ if(window.mobileAndTabletcheck()){
 
 
 function setup() {
+    xc = constrain(a, 0, windowWidth);
+    yx = constrain(b, 0, windowHeight);
     let canvas = createCanvas(700, 800);
     canvas.parent("canvasContainer");
   }
   
 function draw() {
-    circle(a,b,30);
+    circle(xc,yc,30);
   }
 
 
@@ -147,7 +151,8 @@ function permission() {
                 window.addEventListener('deviceorientation', (event) => {
                     document.getElementById("alpha").innerHTML = event.alpha;
                     document.getElementById("beta").innerHTML = event.beta;
-                    document.getElementById("gamma").innerHTML = event.gamma;
+                    // document.getElementById("gamma").innerHTML = event.gamma;
+                    document.getElementById("gamma").innerHTML = xc;
 
                     a = event.alpha;
                     b = event.beta;
@@ -170,6 +175,5 @@ function permission() {
             .catch( console.error )
     } else {
         document.getElementById("gyro-text").innerHTML = "Cannot access your phone's gyroscope.";
-
     }
 }
