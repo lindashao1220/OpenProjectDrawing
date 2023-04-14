@@ -1,3 +1,65 @@
+class Particle {
+    constructor(x, y, size) {
+      this.position = createVector(x, y);
+      this.velocity = createVector(random(-1, 1), random(-1, 1));
+      this.acceleration = createVector(0, 0);
+      this.size = size;
+      // this.color = color(random(63, 191), random(127, 255), random(191, 255), 127);
+      
+          // this.color = color(random(0, 40), random(0, 40), random(0, 40), 200);
+              this.color = color(map( sin(frameCount * 0.03), -1, 1, 0, 200));
+    }
+    
+    update() {
+      this.velocity.add(this.acceleration);
+      this.position.add(this.velocity);
+      this.acceleration.mult(0);
+    }
+    
+    applyForce(force) {
+      this.acceleration.add(force);
+    }
+    
+    display() {
+      noStroke();
+      fill(this.color);
+      ellipse(this.position.x, this.position.y, this.size, this.size);
+    }
+  }
+  
+  class ParticleSystem {
+    constructor() {
+      this.particles = [];
+    }
+    
+    addParticle(x, y, size) {
+      let p = new Particle(x, y, size);
+      this.particles.push(p);
+    }
+    
+    applyForce(force) {
+      for (let i = 0; i < this.particles.length; i++) {
+        this.particles[i].applyForce(force);
+      }
+    }
+    
+    run() {
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        let p = this.particles[i];
+        p.update();
+        p.display();
+        if (p.position.x < 0 || p.position.x > width || p.position.y < 0 || p.position.y > height) {
+          this.particles.splice(i, 1);
+        }
+      }
+    }
+  }
+  
+  
+  
+  let ps = new ParticleSystem();
+
+
 let mainText = document.getElementById("main-text");
 let startButton = document.getElementById("startButton")
 let newHertz;
@@ -38,10 +100,24 @@ function draw() {
     fill(200,100,120);
     // circle(40,40,b);
     rect(100,200,20,40)
-    circle(x,y,30);
+    // circle(x,y,30);
 
-    x = map(g, -90, 90, 0, windowWidth);
-    y = map(b, -90, 90, 0, windowHeight);
+    x = map(g, -90, 90, 0, width);
+    y = map(b, -90, 90, 0, height);
+
+
+
+  
+    // Add a new particle to the system every frame
+    ps.addParticle(x, y, random(10, 20));
+    
+    // Apply a force to all particles in the system based on the mouse position
+    let mouseForce = createVector(x - width/2, mouseY - y/2);
+    mouseForce.mult(0.001);
+    ps.applyForce(mouseForce);
+    
+    // Update and display all particles in the system
+    ps.run();
   }
 
 function map(value, x1, y1, x2, y2){
