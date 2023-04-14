@@ -1,6 +1,9 @@
 let mainText = document.getElementById("main-text");
 let startButton = document.getElementById("startButton")
 let newHertz;
+let a;
+let b;
+let g;
 
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
@@ -27,7 +30,7 @@ function setup() {
   }
   
 function draw() {
-    circle(200,newHertz,30);
+    circle(a,b,30);
   }
 
 
@@ -145,6 +148,10 @@ function permission() {
                     document.getElementById("alpha").innerHTML = event.alpha;
                     document.getElementById("beta").innerHTML = event.beta;
                     document.getElementById("gamma").innerHTML = event.gamma;
+
+                    a = event.alpha;
+                    b = event.beta;
+                    g = event.gamma;
 
                     newHertz = map(Math.abs(event.gamma), 0, 90, minHz, maxHz);
                     
