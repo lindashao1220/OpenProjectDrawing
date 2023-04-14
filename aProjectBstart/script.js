@@ -1,6 +1,7 @@
 let mainText = document.getElementById("main-text");
 let startButton = document.getElementById("startButton")
 
+//check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
 window.mobileAndTabletcheck = function() {
     var check = false;
@@ -19,6 +20,17 @@ if(window.mobileAndTabletcheck()){
 
 
 
+function setup() {
+    let canvas = createCanvas(windowWidth,windowHeight);
+    canvas.parent("canvasContainer");
+  }
+  
+  function draw() {
+    circle(30,30,30);
+  }
+
+
+
 
 let on = document.getElementById("on");
 let off = document.getElementById("off");
@@ -29,9 +41,6 @@ let minSlider = document.getElementById("min");
 let minLabel = document.getElementById("min-label");
 let maxSlider = document.getElementById("max");
 let maxLabel = document.getElementById("max-label");
-
-
-// let volumeRange = document.getElementById("volumeInput");
 
 let context = new AudioContext();
 let destination = context.destination;
@@ -88,22 +97,6 @@ let mappedHertz = map(1, 0, 100, minHz, maxHz);
 oscillator.frequency.value = mappedHertz;
 hertzDisplay.innerHTML = mappedHertz;
 
-//   // on button click event
-// on.addEventListener("click", ()=>{
-//     if(!oscillatorStarted){
-//         oscillator.start(0);
-//         oscillatorStarted = true;
-//     }
-
-//     // instead of setting full volume:
-//     // gain.gain.value = 1;
-//     // let us stay true to the volume slider:
-//     gain.gain.value = 1;
-// });
-
-// off.addEventListener("click", ()=>{
-//     gain.gain.value = 0;
-// });
 
 let playing = false;
 toggle.addEventListener("click", ()=>{
@@ -122,10 +115,6 @@ toggle.addEventListener("click", ()=>{
     }
 })
 
-// volumeRange.addEventListener("input", ()=>{
-//     gain.gain.value = volumeInput.value/100;
-//   })
-
 
 let showDebug = false;
 let debugButton = document.getElementById("debugbutton");
@@ -138,11 +127,6 @@ debugButton.addEventListener("click", ()=>{
 
 
 
-// let btn = document.getElementById("button")
-
-// // if ( location.protocol != "https:" ) {
-// //     location.href = "https:" + window.location.href.substring( window.location.protocol.length );
-// // }
 function permission() {
     document.getElementById("gyro-text").innerHTML = "getting access to gyroscope.";
 
@@ -155,13 +139,6 @@ function permission() {
                 // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("sound-interface").style.display = "block";
-                // if(!oscillatorStarted){
-                //     oscillator.start(0);
-                //     oscillatorStarted = true;
-                // }
-                // gain.gain.value = 1;
-
-
 
 
                 window.addEventListener('deviceorientation', (event) => {
@@ -180,17 +157,12 @@ function permission() {
                     // console.log(`${event.acceleration.x} m/s2`);
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
-
-
                 });
             }
         })
             .catch( console.error )
     } else {
-        // alert( "DeviceMotionEvent is not defined" );
-        // document.getElementById('doeSupported').innerText = 'still no';
         document.getElementById("gyro-text").innerHTML = "Cannot access your phone's gyroscope.";
 
     }
 }
-// btn.addEventListener( "click", permission );
