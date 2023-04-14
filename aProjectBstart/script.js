@@ -34,10 +34,9 @@ function setup() {
   }
   
 function draw() {
+    circle(40,40,50);
     circle(xc,yc,30);
   }
-
-
 
 function map(value, x1, y1, x2, y2){
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
