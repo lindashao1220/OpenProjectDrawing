@@ -99,7 +99,7 @@ function draw() {
     background(255);
     fill(200,100,120);
     // circle(40,40,b);
-    rect(100,200,20,40)
+    rect(200,200,20,40)
     // circle(x,y,30);
 
     x = map(g, -90, 90, 0, width);
