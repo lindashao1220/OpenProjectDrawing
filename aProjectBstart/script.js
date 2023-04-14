@@ -97,7 +97,7 @@ function setup() {
   
 function draw() {
     background(255);
-    fill(100,100,120);
+    fill(150,100,120);
     // circle(40,40,b);
     rect(200,200,20,40)
     // circle(x,y,30);
