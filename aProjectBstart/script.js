@@ -7,6 +7,9 @@ let g;
 let xc;
 let yc;
 
+let x;
+let y;
+
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
 window.mobileAndTabletcheck = function() {
@@ -25,19 +28,20 @@ if(window.mobileAndTabletcheck()){
 }
 
 
-
 function setup() {
-    xc = constrain(a, 0, windowWidth);
-    yx = constrain(b, 0, windowHeight);
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("canvasContainer");
   }
   
 function draw() {
-    fill(100,100,120);
+    background(100);
+    fill(200,100,120);
     circle(40,40,b);
     rect(100,200,20,40)
-    circle(a,b,30);
+    circle(x,y,30);
+
+    x = map(g, -90, 90, 0, windowWidth);
+    y = map(b, -90, 90, 0, windowHeight);
   }
 
 function map(value, x1, y1, x2, y2){
@@ -67,7 +71,6 @@ function permission() {
                 // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
 
-
                 window.addEventListener('deviceorientation', (event) => {
                     a = event.alpha;
                     b = event.beta;
@@ -76,10 +79,6 @@ function permission() {
                     document.getElementById("alpha").innerHTML = a;
                     document.getElementById("beta").innerHTML = b;
                     document.getElementById("gamma").innerHTML = g;
-                    // document.getElementById("gamma").innerHTML = xc;
-
-                   
-
                 });
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
