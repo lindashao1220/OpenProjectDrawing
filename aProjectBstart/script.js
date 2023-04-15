@@ -102,13 +102,13 @@ function draw() {
     rect(200,200,20,40)
     // circle(x,y,30);
 
-    x = map(g, -90, 90, 0, width);
-    y = map(b, -90, 90, 0, height);
+    x = map(g, -80, 80, 0, width);
+    y = map(b, -80, 80, 0, height);
 
 
 
     // Add a new particle to the system every frame
-    ps.addParticle(x, y, random(10, 20));
+    ps.addParticle(x, y, random(5, 15));
     
     // Apply a force to all particles in the system based on the mouse position
     let mouseForce = createVector(x - width/2, y - height/2);
