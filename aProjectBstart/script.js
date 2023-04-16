@@ -166,8 +166,8 @@ function draw() {
       push();
       stroke(0);
       strokeWeight(2);
-      // translate(width / 2, height / 2);
-      translate(x, y);
+      translate(width / 2, height / 2);
+    //   translate(x, y);
     
       // draw the petals
       for (let i = 0; i < sound.length; i++) {
