@@ -54,11 +54,11 @@ class Particle {
       }
     }
   }
-  
-  
-  
-  let ps = new ParticleSystem();
 
+
+  
+  
+let ps = new ParticleSystem();
 
 let mainText = document.getElementById("main-text");
 let startButton = document.getElementById("startButton")
@@ -72,6 +72,11 @@ let yc;
 let x;
 let y;
 
+let sound = [];
+let cases = 0;
+let lastUpdateTime = 0;
+
+
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
 window.mobileAndTabletcheck = function() {
@@ -83,45 +88,242 @@ window.mobileAndTabletcheck = function() {
 if(window.mobileAndTabletcheck()){
     mainText.innerHTML = "🌀";
     document.getElementById("getGyroAccess").style.display = "block";
-    startButton.addEventListener("click", permission)
-
+    startButton.addEventListener("click", permission);
 }else{
     mainText.innerHTML = "Please visit this page on a mobile phone";
 }
 
 
 function setup() {
+    angleMode(DEGREES);
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("canvasContainer");
   }
+ 
   
 function draw() {
     background(255);
-    // fill(150,100,120);
-    // circle(40,40,b);
-    // rect(200,200,20,40)
-    // circle(x,y,30);
 
     x = map(g, -80, 80, 0, width);
     y = map(b, -80, 80, 0, height);
 
 
-
     // Add a new particle to the system every frame
     ps.addParticle(x, y, random(5, 15));
     
+
     // Apply a force to all particles in the system based on the mouse position
     let mouseForce = createVector(x - width/2, y - height/2);
     mouseForce.mult(0.001);
     ps.applyForce(mouseForce);
     
+
     // Update and display all particles in the system
     ps.run();
+
+
+    //petal code
+    if (b <= -30) {
+        cases = 1;
+      } else if (b > -30 && b < 0) {
+        cases = 2;
+      } else if (b < 50 && b >= 0) {
+        cases = 3;
+      } else{
+        cases = 0;
+      }
+
+
+    if (millis() - lastUpdateTime >= 300) {
+        if (cases == 1) {
+          sound.push({
+            type: "petal1",
+            size: 3,
+          });
+        } else if (cases == 2) {
+          sound.push({
+            type: "petal3",
+            size: 3,
+          });
+        } else if (cases == 3) {
+          sound.push({
+            type: "petal4",
+            size: 3,
+          });
+        } else if (cases == 0) {
+          sound.push({
+            type: "petal2",
+            size: 2,
+          });
+        }
+        if (sound.length > 23) {
+          sound.splice(0, 23); // limit the array length to 23
+          sound = [];
+        }
+        lastUpdateTime = millis(); // update the last update time
+      }
+    
+      push();
+      stroke(255);
+      strokeWeight(2);
+      // translate(width / 2, height / 2);
+      translate(x, y);
+    
+      // draw the petals
+      for (let i = 0; i < sound.length; i++) {
+        rotate(16);
+        if (sound[i].type == "petal1") {
+          //最紧密
+          // strokeWeight(1);
+          // stroke(255);
+          drawPetal(-40, 370, 5);
+          drawPetal(10, 400, 5);
+          drawPetal(30, 300, 3);
+          drawPetal(-30, 300, 3);
+        } else if (sound[i].type == "petal3") {
+          //一般松弛
+          drawPetal(-40, 300, 5);
+          drawPetal(10, 320, 5);
+          drawPetal(30, 270, 3);
+          drawPetal(-30, 260, 3);
+          drawPetal(18, 330, 2.5);
+          drawPetal(0, 830, 5);
+        } else if (sound[i].type == "petal4") {
+          //最松弛
+          drawPetal(-40, 300, 5);
+          drawPetal(10, 320, 5);
+          drawPetal(30, 270, 3);
+          drawPetal(-30, 260, 3);
+          drawPetal(-5, 400, 3.2);
+          drawPetal(18,450,2.5);
+          drawPetal(0,1100*sin,5);
+        } else {
+          //一般紧密
+          drawPetal(10, 400, 5);
+          drawPetal(30, 370, 3);
+          drawPetal(-30, 370, 3);
+        }
+      }
+      pop();
+      
   }
 
 function map(value, x1, y1, x2, y2){
     return (value - x1) * (y2 - x2) / (y1 - x1) + x2;
   }
+
+
+
+  function drawPetal(x, y, s) {
+    //   fill(0);
+    fill(255);
+    ellipse((-3 + x) / s, (24 + y) / s, 6 / s, 6 / s);
+  
+    bezier(
+      (1 + x) / s,
+      (31 + y) / s,
+      (-8 + x) / s,
+      (-26 + y) / s,
+      (15 + x) / s,
+      (200 + y) / s,
+      (1 + x) / s,
+      (31 + y) / s
+    );
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((-22 + x) / s, (102 + y) / s);
+    curveVertex((-47 + x) / s, (119 + y) / s);
+    curveVertex((-47 + x) / s, (119 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((171 - 185 + x) / s, (325 - 219 + y) / s);
+    curveVertex((161 - 185 + x) / s, (335 - 219 + y) / s);
+    curveVertex((161 - 185 + x) / s, (335 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((171 - 185 + x) / s, (325 - 219 + y) / s);
+    curveVertex((158 - 185 + x) / s, (339 - 219 + y) / s);
+    curveVertex((158 - 185 + x) / s, (339 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((180 - 185 + x) / s, (328 - 219 + y) / s);
+    curveVertex((178 - 185 + x) / s, (338 - 219 + y) / s);
+    curveVertex((178 - 185 + x) / s, (338 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((196 - 185 + x) / s, (328 - 219 + y) / s);
+    curveVertex((196 - 185 + x) / s, (339 - 219 + y) / s);
+    curveVertex((196 - 185 + x) / s, (339 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((202 - 185 + x) / s, (328 - 219 + y) / s);
+    curveVertex((207 - 185 + x) / s, (341 - 219 + y) / s);
+    curveVertex((207 - 185 + x) / s, (341 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((213 - 185 + x) / s, (326 - 219 + y) / s);
+    curveVertex((224 - 185 + x) / s, (342 - 219 + y) / s);
+    curveVertex((224 - 185 + x) / s, (342 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((175 - 185 + x) / s, (329 - 219 + y) / s);
+    curveVertex((169 - 185 + x) / s, (346 - 219 + y) / s);
+    curveVertex((169 - 185 + x) / s, (346 - 219 + y) / s);
+    endShape();
+  
+    beginShape();
+    noFill();
+    strokeWeight(1);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((6 + x) / s, (96 + y) / s);
+    curveVertex((200 - 185 + x) / s, (332 - 219 + y) / s);
+    curveVertex((201 - 185 + x) / s, (349 - 219 + y) / s);
+    curveVertex((201 - 185 + x) / s, (349 - 219 + y) / s);
+    endShape();
+  }
+
+
+
+
 
 
 let showDebug = false;
