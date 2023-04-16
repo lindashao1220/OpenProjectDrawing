@@ -216,7 +216,7 @@ function map(value, x1, y1, x2, y2){
 
   function drawPetal(x, y, s) {
     //   fill(0);
-    fill(255);
+    fill(0);
     ellipse((-3 + x) / s, (24 + y) / s, 6 / s, 6 / s);
   
     bezier(
