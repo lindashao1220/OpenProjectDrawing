@@ -164,7 +164,7 @@ function draw() {
       }
     
       push();
-      stroke(255);
+      stroke(0);
       strokeWeight(2);
       // translate(width / 2, height / 2);
       translate(x, y);
