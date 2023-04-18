@@ -212,7 +212,7 @@ function draw() {
   }
   pop();
   
-    if (averageFrequency>-95) {
+    if (averageFrequency>-100) {
     for (let i = 0; i < sound.length; i++) {
       sound[i].y += 5; 
       // if (sound[i].y < -200) {
