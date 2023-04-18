@@ -405,7 +405,7 @@ navigator.mediaDevices.getUserMedia({audio: true})
         sum += frequencyData[i];
       }
       var averageFrequency = sum / frequencyData.length;
-      document.getElementById("acc_y").innerHTML = averageFrequency;
+      document.getElementById("mic").innerHTML = averageFrequency;
 
       // if the average frequency is above a certain threshold, assume the user is blowing
       if (averageFrequency > -70) {
