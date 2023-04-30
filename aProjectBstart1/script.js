@@ -390,7 +390,7 @@ function permission() {
 
 
 
-//MICROPHONEEEEE PART
+//MICROPHONEEEEE PART from ChatGPT
 
 // request access to the user's microphone
 var averageFrequency;
