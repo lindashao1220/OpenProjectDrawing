@@ -70,6 +70,164 @@ class ParticleSystem {
 
 
 
+class Petal {
+  constructor(angle,radius,color,size,index) {
+    this.angle = angle;
+    this.radius = radius;    
+    this.x = width/2 + cos(radians(this.angle)) * radius;
+    this.y = height/2 + sin(radians(this.angle)) * radius;
+    this.color = color;
+    this.s = size;
+    this.floating = true;
+    this.speedX = random(2, 5);
+    this.speedY = random(1, 2);
+    this.shapeType = "circle";
+    this.index = index
+    this.isDone = false;
+  }
+  
+   display1() {
+    if (this.shapeType === "circle") {
+      ellipse(this.x, this.y, 50, 50);
+    } else {
+      rect(this.x, this.y, 50, 50);
+    }
+  }
+  
+  display() {
+    push();
+    translate(this.x, this.y);
+    // rotate(radians(this.angle-90));
+    rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
+    stroke(this.color);
+    fill(this.color)
+    // replace this by nice petal
+    // line(0, 0, 10, 0);
+    ellipse((-3+3)/this.s,(24+10)/this.s,6/3,6/this.s);
+
+  bezier((1+3)/this.s,(31+10)/this.s,(-8+3)/this.s,(-26+10)/this.s,(15+3)/this.s,(200+10)/this.s,(1+3)/this.s,(31+10)/this.s);
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((-22+3)/this.s,(102+10)/this.s);
+  curveVertex((-47+3)/this.s,(119+10)/this.s);
+  curveVertex((-47+3)/this.s,(119+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  
+//   curveVertex((mouseX-200+x)/s,(mouseY+y)/s);
+  
+  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
+  
+  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
+  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
+  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
+  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
+  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
+  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((180-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
+  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((196-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
+  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((202-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
+  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
+  endShape();
+  
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((213-185+3)/this.s,(326-219+10)/this.s);
+  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
+  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((175-185+3)/this.s,(329-219+10)/this.s);
+  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
+  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((200-185+3)/this.s,(332-219+10)/this.s);
+  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
+  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
+  endShape();  
+    
+    pop();
+  }
+  
+  checkOutOfCanvas() {
+    // horizontally
+    if (this.x < 0 || this.x > width) {
+      this.isDone = true;
+    }
+    // vertically
+    if (this.y < 0 || this.y > height) {
+      this.isDone = true;
+    }
+  }
+  
+ move(){
+    this.x += this.speedX;
+    this.y -= this.speedY;
+ }
+  
+}
+
+
+
+
 //petals
 const circleInterval = 200;
 
@@ -260,161 +418,6 @@ if (y < height/4) {
       // console.log(innerPetal.length)
   }
   
-  
-}
-
-class Petal {
-  constructor(angle,radius,color,size,index) {
-    this.angle = angle;
-    this.radius = radius;    
-    this.x = width/2 + cos(radians(this.angle)) * radius;
-    this.y = height/2 + sin(radians(this.angle)) * radius;
-    this.color = color;
-    this.s = size;
-    this.floating = true;
-    this.speedX = random(2, 5);
-    this.speedY = random(1, 2);
-    this.shapeType = "circle";
-    this.index = index
-    this.isDone = false;
-  }
-  
-   display1() {
-    if (this.shapeType === "circle") {
-      ellipse(this.x, this.y, 50, 50);
-    } else {
-      rect(this.x, this.y, 50, 50);
-    }
-  }
-  
-  display() {
-    push();
-    translate(this.x, this.y);
-    // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
-    stroke(this.color);
-    fill(this.color)
-    // replace this by nice petal
-    // line(0, 0, 10, 0);
-    ellipse((-3+3)/this.s,(24+10)/this.s,6/3,6/this.s);
-
-  bezier((1+3)/this.s,(31+10)/this.s,(-8+3)/this.s,(-26+10)/this.s,(15+3)/this.s,(200+10)/this.s,(1+3)/this.s,(31+10)/this.s);
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((-22+3)/this.s,(102+10)/this.s);
-  curveVertex((-47+3)/this.s,(119+10)/this.s);
-  curveVertex((-47+3)/this.s,(119+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  
-//   curveVertex((mouseX-200+x)/s,(mouseY+y)/s);
-  
-  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
-  
-  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
-  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
-  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
-  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
-  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
-  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((180-185+3)/this.s,(328-219+10)/this.s);
-  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
-  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((196-185+3)/this.s,(328-219+10)/this.s);
-  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
-  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((202-185+3)/this.s,(328-219+10)/this.s);
-  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
-  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
-  endShape();
-  
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((213-185+3)/this.s,(326-219+10)/this.s);
-  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
-  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((175-185+3)/this.s,(329-219+10)/this.s);
-  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
-  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
-  endShape();
-  
-  beginShape();
-  noFill();
-  strokeWeight(1.5)
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((6+3)/this.s,(96+10)/this.s);
-  curveVertex((200-185+3)/this.s,(332-219+10)/this.s);
-  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
-  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
-  endShape();  
-    
-    pop();
-  }
-  
-  checkOutOfCanvas() {
-    // horizontally
-    if (this.x < 0 || this.x > width) {
-      this.isDone = true;
-    }
-    // vertically
-    if (this.y < 0 || this.y > height) {
-      this.isDone = true;
-    }
-  }
-  
- move(){
-    this.x += this.speedX;
-    this.y -= this.speedY;
- }
   
 }
 
