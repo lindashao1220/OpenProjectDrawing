@@ -135,6 +135,8 @@ function setup() {
 
 function draw() {
   background(255);
+  //swayying a little
+  sway = map(intensity, 0, 70,25,5);
 
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
@@ -258,9 +260,6 @@ if (y < height/4) {
   
   
 }
-
-//swayying a little
-sway = map(intensity, 0, 70,25,5);
 
 class Petal {
   constructor(angle,radius,color,size,index) {
