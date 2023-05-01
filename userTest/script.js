@@ -98,7 +98,7 @@ class Petal {
     push();
     translate(this.x, this.y);
     // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + sin(frameCount / (sway + noise(this.index)))));
+    rotate(radians(this.angle-90 + sin(frameCount / (swayLevel + noise(this.index)))));
     stroke(this.color);
     fill(this.color)
     // replace this by nice petal
@@ -259,6 +259,7 @@ let intensity;
 let x =0;
 let y =0;
 let sway =0;
+let swayLevel =0;
 
 
 //check if the device is the phone
@@ -298,6 +299,13 @@ function draw() {
 
  fill(50,50,100)
   sway = map(intensity,0,100,10,15)
+if (sway < 10){
+  swayLevel = 19
+}else if(sway > 10 && sway < 90){
+  swayLevel = 13
+}else{
+  swayLevel = 8
+}
 
   ellipse(100,50,round(sway))
 
