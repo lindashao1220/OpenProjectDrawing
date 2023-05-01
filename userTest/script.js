@@ -307,7 +307,7 @@ if (sway < 10){
   swayLevel = 8
 }
 
-  ellipse(100,50,round(sway))
+  ellipse(100,100,round(swayLevel))
 
 
 
