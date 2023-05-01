@@ -109,13 +109,13 @@ let y;
 //   return check;
 // };
 
-if(window.mobileAndTabletcheck()){
+// if(window.mobileAndTabletcheck()){
   mainText.innerHTML = "🌀";
   document.getElementById("getGyroAccess").style.display = "block";
   startButton.addEventListener("click", permission);
-}else{
-  mainText.innerHTML = "Please visit this page on a mobile phone";
-}
+// }else{
+//   mainText.innerHTML = "Please visit this page on a mobile phone";
+// }
 
 
 function setup() {
