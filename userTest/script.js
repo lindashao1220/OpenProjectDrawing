@@ -297,7 +297,7 @@ function draw() {
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
 
- fill(100,100,100)
+ fill(200,200,200)
   sway = map(intensity,0,100,10,15);
 if (intensity < 100){
   swayLevel = 1000
