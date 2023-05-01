@@ -298,6 +298,7 @@ function draw() {
   y = map(b, -80, 80, 0, height);
 
   sway = map(intensity,0,100,10,15);
+
 if (intensity < 3.5){
   swayLevel = 1000
 }else if(intensity > 5){
@@ -306,7 +307,7 @@ if (intensity < 3.5){
 
 
 
-  ps.addParticle(x, y, random(8, 17));
+  ps.addParticle(x, y, random(11, 21));
   
   // Apply a force to all particles in the system based on the mouse position
   let mouseForce = createVector(x - width/2, y - height/2);
