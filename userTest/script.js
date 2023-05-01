@@ -256,9 +256,9 @@ let xc;
 let yc;
 let intensity;
 
-let x;
-let y;
-let sway;
+let x =0;
+let y =0;
+let sway =0;
 
 
 //check if the device is the phone
