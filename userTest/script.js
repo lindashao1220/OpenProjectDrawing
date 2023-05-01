@@ -14,16 +14,16 @@ class Particle {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
-    if (mouseY < height/4) {
+    if (y < height/4) {
     // dark green
     this.color = color(2,115+sin(frameCount*0.03)*20,115);
-  } else if (mouseY > height/4 && mouseY < height/2) {
+  } else if (y > height/4 && y < height/2) {
     // green3, 140, 127
     this.color = color(3,140+sin(frameCount*0.03)*20,127);
-  } else if (mouseY > height/2 && mouseY < height/4*3) {
+  } else if (y > height/2 && y < height/4*3) {
     //light green 169, 217, 208
     this.color = color(169,217+sin(frameCount*0.03)*20,208);
-  }else if(mouseY > height/4*3 && mouseY>0) {
+  }else if(y > height/4*3 && y > 0) {
     // 2mibai42, 231, 220
     this.color = color(242,231+sin(frameCount*0.03)*10,220);
   }
