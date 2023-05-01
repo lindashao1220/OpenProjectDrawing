@@ -442,7 +442,7 @@ function permission() {
                     b = event.beta;
                     g = event.gamma;
 
-                    intensity = Math.sqrt(Math.pow(alpha, 2) + Math.pow(beta, 2) + Math.pow(gamma, 2));
+                    intensity = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(g, 2));
 
                     document.getElementById("alpha").innerHTML = a;
                     document.getElementById("beta").innerHTML = b;
