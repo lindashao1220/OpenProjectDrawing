@@ -100,6 +100,7 @@ let intensity;
 
 let x;
 let y;
+let sway;
 
 
 //check if the device is the phone
@@ -136,6 +137,9 @@ function draw() {
 
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
+
+  sway = map(intensity,0,70,25,5)
+  circle(30,30,sway)
 
 
 
