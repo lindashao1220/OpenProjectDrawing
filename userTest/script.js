@@ -257,9 +257,6 @@ if (y < height/4) {
   
 }
 
-//swayying a little
-// sway = map()
-
 class Petal {
   constructor(angle,radius,color,size,index) {
     this.angle = angle;
@@ -455,7 +452,8 @@ function permission() {
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
-                    intensity = Math.sqrt((event.acceleration.x * event.acceleration.x + event.acceleration.y * event.acceleration.y) * 100);
+                    intensity = Math.sqrt((event.acceleration.x * event.acceleration.x + event.acceleration.y * event.acceleration.y) / 2);
+                    intensity = Math.pow(-event.acceleration.x, 1/10) + Math.pow(-event.acceleration.y, 1/10);
                     document.getElementById("intensity").innerHTML = intensity;
                 });
             }
