@@ -299,10 +299,10 @@ function draw() {
 
   sway = map(intensity,0,100,10,15);
 
-if (intensity < 3.5){
+if (intensity < 90){
   swayLevel = 1000
-}else if(intensity > 5){
-  swayLevel = 8
+}else if(intensity > 90){
+  swayLevel = 4
 }
 
 
