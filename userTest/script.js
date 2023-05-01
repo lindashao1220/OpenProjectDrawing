@@ -1,0 +1,499 @@
+class Particle {
+  constructor(x, y, size) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-1, 1), random(-1, 1));
+    this.acceleration = createVector(0, 0);
+    this.size = size;
+    // this.color = color(random(63, 191), random(127, 255), random(191, 255), 127);
+    
+        // this.color = color(random(0, 40), random(0, 40), random(0, 40), 200);
+    this.color = color(0,0,0);
+  }
+  
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    if (mouseY < height/4) {
+    // dark green
+    this.color = color(2,115+sin(frameCount*0.03)*20,115);
+  } else if (mouseY > height/4 && mouseY < height/2) {
+    // green3, 140, 127
+    this.color = color(3,140+sin(frameCount*0.03)*20,127);
+  } else if (mouseY > height/2 && mouseY < height/4*3) {
+    //light green 169, 217, 208
+    this.color = color(169,217+sin(frameCount*0.03)*20,208);
+  }else if(mouseY > height/4*3 && mouseY>0) {
+    // 2mibai42, 231, 220
+    this.color = color(242,231+sin(frameCount*0.03)*10,220);
+  }
+  }
+  
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+  
+  display() {
+    noStroke();
+    fill(this.color);
+    ellipse(this.position.x, this.position.y, this.size, this.size);
+  }
+}
+
+class ParticleSystem {
+  constructor() {
+    this.particles = [];
+  }
+  
+  addParticle(x, y, size) {
+    let p = new Particle(x, y, size);
+    this.particles.push(p);
+  }
+  
+  applyForce(force) {
+    for (let i = 0; i < this.particles.length; i++) {
+      this.particles[i].applyForce(force);
+    }
+  }
+  
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.update();
+      p.display();
+      if (p.position.x < 0 || p.position.x > width || p.position.y < 0 || p.position.y > height) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+
+//petals
+const circleInterval = 200;
+
+let innerPetal = [];
+let middlePetal = [];
+let outerPetal = [];
+
+let lastCircleTime = 0;
+let curCircle = 0;
+
+let counts = 0;
+let soundDetected = false;
+
+let hong, lu, lan;
+
+//particle system
+let ps = new ParticleSystem();
+
+//phone
+let mainText = document.getElementById("main-text");
+let startButton = document.getElementById("startButton")
+let a;
+let b;
+let g;
+let xc;
+let yc;
+
+let x;
+let y;
+
+
+function setup() {
+  createCanvas(350, 640);
+  hong = 255; //red
+  lu = 255; //green
+  lan = 255; //blue  
+  for (let i = 0; i < 12 ; i++) {
+    innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
+    middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i));
+    outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i));
+  }
+}
+
+function draw() {
+  background(255);
+
+  x = map(g, -80, 80, 0, width);
+  y = map(b, -80, 80, 0, height);
+
+
+
+  ps.addParticle(x, y, random(13, 23));
+  
+  // Apply a force to all particles in the system based on the mouse position
+  let mouseForce = createVector(x - width/2, y - height/2);
+  mouseForce.mult(0.001);
+  ps.applyForce(mouseForce);
+  ps.run();
+  
+if (y < height/4) {
+    // dark green
+    hong = 2;
+    lu = 115;
+    lan = 115;
+  } else if (y > height/4 && y < height/2) {
+    // green3, 140, 127
+    hong = 3;
+    lu = 140;
+    lan = 127;
+  } else if (y > height/2 && y < height/4*3) {
+    //light green 169, 217, 208
+    hong = 169;
+    lu = 217;
+    lan = 208;
+  }else if(y > height/4*3 && y>0) {
+    // 2mibai42, 231, 220
+    hong = 242;
+    lu = 231;
+    lan = 220;
+  }
+  noStroke();
+  fill(hong,lu,lan);
+  // ellipse(mouseX, mouseY, 30, 30);
+  
+ if (averageFrequency > -95) {
+    if (!soundDetected) {
+      counts++;
+      soundDetected = true;
+    }
+  } else {
+    soundDetected = false;
+  }
+  // console.log(counts)
+  let currTime = millis();
+  if (currTime - lastCircleTime > circleInterval) {
+    //display
+    innerPetal[curCircle].color = color(hong,lu+sin(frameCount*0.03)*20,lan);
+    middlePetal[curCircle].color = color(hong+random(20),lu-random(50),lan+random(30));
+    outerPetal[curCircle].color = color(hong-random(20),lu+random(50),lan-random(30));
+     // outerPetal[curCircle].color = color(random(255), random(255), random(255));
+    
+    //display1
+    // if(mouseIsPressed){
+    // innerPetal[curCircle].shapeType = "circle";
+    // }else{
+    // innerPetal[curCircle].shapeType = "rectangle";
+    // }
+    
+    curCircle = (curCircle+1) % 12;
+    lastCircleTime = currTime;
+  }
+  for (let i = 0; i < innerPetal.length; i++) {
+      innerPetal[i].checkOutOfCanvas();
+    // if (i !== curCircle) {
+      // circles[i].display1();
+      innerPetal[i].display();
+      middlePetal[i].display();
+      outerPetal[i].display();
+    // console.log(counts)
+  
+    
+    if(counts == 3){
+      innerPetal[i].move();
+    }
+    if(counts == 2){
+       middlePetal[i].move();
+    }
+    if(counts == 1){
+      outerPetal[i].move();
+    }   
+    // } 
+  }
+  
+    for (let i = innerPetal.length - 1; i >= 0; i--) {
+    let inner = innerPetal[i];
+    if (inner.isDone == true) {
+      //splice
+      innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
+      innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
+      
+      middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
+      middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
+      
+      outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
+      outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
+      
+      
+//     innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
+//     middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i));
+//     outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i));
+      // innerPetal.splice(i, 1); 
+      // inner.isDone = false;
+      // innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
+      // innerPetal.
+      console.log(innerPetal.length)
+    
+      
+      //append new 12 petals to innerPetal and display
+      
+      
+//       innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
+//       innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
+    }
+      // console.log(innerPetal.length)
+  }
+  
+  
+}
+
+class Petal {
+  constructor(angle,radius,color,size,index) {
+    this.angle = angle;
+    this.radius = radius;    
+    this.x = width/2 + cos(radians(this.angle)) * radius;
+    this.y = height/2 + sin(radians(this.angle)) * radius;
+    this.color = color;
+    this.s = size;
+    this.floating = true;
+    this.speedX = random(2, 5);
+    this.speedY = random(1, 2);
+    this.shapeType = "circle";
+    this.index = index
+    this.isDone = false;
+  }
+  
+   display1() {
+    if (this.shapeType === "circle") {
+      ellipse(this.x, this.y, 50, 50);
+    } else {
+      rect(this.x, this.y, 50, 50);
+    }
+  }
+  
+  display() {
+    push();
+    translate(this.x, this.y);
+    // rotate(radians(this.angle-90));
+    rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
+    stroke(this.color);
+    fill(this.color)
+    // replace this by nice petal
+    // line(0, 0, 10, 0);
+    ellipse((-3+3)/this.s,(24+10)/this.s,6/3,6/this.s);
+
+  bezier((1+3)/this.s,(31+10)/this.s,(-8+3)/this.s,(-26+10)/this.s,(15+3)/this.s,(200+10)/this.s,(1+3)/this.s,(31+10)/this.s);
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((-22+3)/this.s,(102+10)/this.s);
+  curveVertex((-47+3)/this.s,(119+10)/this.s);
+  curveVertex((-47+3)/this.s,(119+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  
+//   curveVertex((mouseX-200+x)/s,(mouseY+y)/s);
+  
+  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
+  
+  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
+  // curveVertex((mouseX-250+x)/s,(mouseY-200+y)/s);
+  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
+  curveVertex((161-185+3)/this.s,(335-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((171-185+3)/this.s,(325-219+10)/this.s);
+  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
+  curveVertex((158-185+3)/this.s,(339-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((180-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
+  curveVertex((178-185+3)/this.s,(338-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((196-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
+  curveVertex((196-185+3)/this.s,(339-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((202-185+3)/this.s,(328-219+10)/this.s);
+  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
+  curveVertex((207-185+3)/this.s,(341-219+10)/this.s);
+  endShape();
+  
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((213-185+3)/this.s,(326-219+10)/this.s);
+  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
+  curveVertex((224-185+3)/this.s,(342-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((175-185+3)/this.s,(329-219+10)/this.s);
+  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
+  curveVertex((169-185+3)/this.s,(346-219+10)/this.s);
+  endShape();
+  
+  beginShape();
+  noFill();
+  strokeWeight(1.5)
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((6+3)/this.s,(96+10)/this.s);
+  curveVertex((200-185+3)/this.s,(332-219+10)/this.s);
+  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
+  curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
+  endShape();  
+    
+    pop();
+  }
+  
+  checkOutOfCanvas() {
+    // horizontally
+    if (this.x < 0 || this.x > width) {
+      this.isDone = true;
+    }
+    // vertically
+    if (this.y < 0 || this.y > height) {
+      this.isDone = true;
+    }
+  }
+  
+ move(){
+    this.x += this.speedX;
+    this.y -= this.speedY;
+ }
+  
+}
+
+
+
+
+
+let showDebug = false;
+let debugButton = document.getElementById("debugbutton");
+let debugInfo = document.getElementById("debug");
+debugButton.addEventListener("click", ()=>{
+    showDebug = !showDebug;
+    debugInfo.style.display = showDebug?"block":"none";
+})
+
+
+
+function permission() {
+    document.getElementById("gyro-text").innerHTML = "getting access to gyroscope.";
+
+    if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
+        // (optional) Do something before API request prompt.
+        DeviceMotionEvent.requestPermission()
+            .then( response => {
+            // (optional) Do something after API prompt dismissed.
+            if ( response == "granted" ) {
+                // document.getElementById("gyro-text").innerHTML = "Ready.";
+                document.getElementById("getGyroAccess").style.display = "none";
+
+                window.addEventListener('deviceorientation', (event) => {
+                    a = event.alpha;
+                    b = event.beta;
+                    g = event.gamma;
+
+                    document.getElementById("alpha").innerHTML = a;
+                    document.getElementById("beta").innerHTML = b;
+                    document.getElementById("gamma").innerHTML = g;
+                });
+                window.addEventListener('devicemotion', (event) => {
+                    document.getElementById("acc_x").innerHTML = event.acceleration.x;
+                    document.getElementById("acc_y").innerHTML = event.acceleration.y;
+                });
+            }
+        })
+            .catch( console.error )
+    } else {
+        document.getElementById("gyro-text").innerHTML = "Cannot access your phone's gyroscope.";
+    }
+}
+
+
+
+
+
+
+//MICROPHONEEEEE PART from ChatGPT
+
+// request access to the user's microphone
+var averageFrequency;
+navigator.mediaDevices.getUserMedia({audio: true})
+  .then(function(stream) {
+    // create a new AudioContext
+    var audioContext = new AudioContext();
+
+    // create a new MediaStreamAudioSourceNode using the microphone stream
+    var sourceNode = audioContext.createMediaStreamSource(stream);
+
+    // create a new AnalyserNode to analyze the audio data
+    var analyserNode = audioContext.createAnalyser();
+
+    // connect the sourceNode to the analyserNode
+    sourceNode.connect(analyserNode);
+
+    // set the FFT size to 2048
+    analyserNode.fftSize = 2048;
+
+    // create a new Float32Array to hold the frequency data
+    var frequencyData = new Float32Array(analyserNode.frequencyBinCount);
+
+    // define a function to update the frequency data
+    function updateFrequencyData() {
+      // copy the frequency data from the analyserNode to the frequencyData array
+      analyserNode.getFloatFrequencyData(frequencyData);
+
+      // calculate the average frequency of the data
+      var sum = 0;
+      for (var i = 0; i < frequencyData.length; i++) {
+        sum += frequencyData[i];
+      }
+      averageFrequency = sum / frequencyData.length;
+      document.getElementById("mic").innerHTML = averageFrequency;
+
+      // if the average frequency is above a certain threshold, assume the user is blowing
+      if (averageFrequency > -70) {
+        console.log("Blowing detected!");
+      }
+
+      // schedule the next update
+      requestAnimationFrame(updateFrequencyData);
+    }
+
+    // start updating the frequency data
+    updateFrequencyData();
+  })
+  .catch(function(error) {
+    console.error("Error accessing microphone:", error);
+  });

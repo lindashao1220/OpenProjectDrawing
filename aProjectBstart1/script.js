@@ -62,7 +62,6 @@ let ps = new ParticleSystem();
 
 let mainText = document.getElementById("main-text");
 let startButton = document.getElementById("startButton")
-let newHertz;
 let a;
 let b;
 let g;
