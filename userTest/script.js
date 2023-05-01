@@ -96,6 +96,7 @@ let b;
 let g;
 let xc;
 let yc;
+let intensity;
 
 let x;
 let y;
@@ -414,7 +415,6 @@ class Petal {
 
 
 
-
 let showDebug = false;
 let debugButton = document.getElementById("debugbutton");
 let debugInfo = document.getElementById("debug");
@@ -442,9 +442,12 @@ function permission() {
                     b = event.beta;
                     g = event.gamma;
 
+                    intensity = Math.sqrt(Math.pow(alpha, 2) + Math.pow(beta, 2) + Math.pow(gamma, 2));
+
                     document.getElementById("alpha").innerHTML = a;
                     document.getElementById("beta").innerHTML = b;
                     document.getElementById("gamma").innerHTML = g;
+                    document.getElementById("intensity").innerHTML = intensity;
                 });
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
