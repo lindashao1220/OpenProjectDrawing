@@ -452,7 +452,7 @@ function permission() {
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
-                    intensity = Math.pow(event.acceleration.x, 1/10) + Math.pow(event.acceleration.y, 1/10);
+                    intensity = Math.sqrt((event.acceleration.x * event.acceleration.x + event.acceleration.y * event.acceleration.y) * 100);
                     document.getElementById("intensity").innerHTML = intensity;
                 });
             }
