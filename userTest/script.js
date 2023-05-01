@@ -442,16 +442,18 @@ function permission() {
                     b = event.beta;
                     g = event.gamma;
 
-                    intensity = Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(g, 2);
+                    // intensity = Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(g, 2);
 
                     document.getElementById("alpha").innerHTML = a;
                     document.getElementById("beta").innerHTML = b;
                     document.getElementById("gamma").innerHTML = g;
-                    document.getElementById("intensity").innerHTML = intensity;
+                    // document.getElementById("intensity").innerHTML = intensity;
                 });
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
+                    intensity = Math.pow(event.acceleration.x, 1/10) + Math.pow(event.acceleration.y, 1/10);
+                    document.getElementById("intensity").innerHTML = intensity;
                 });
             }
         })
