@@ -299,10 +299,10 @@ function draw() {
 
  fill(100,100,100)
   sway = map(intensity,0,100,10,15);
-if (intensity < 0.1){
+if (intensity < 100){
   swayLevel = 1000
-}else if(intensity > 0.1){
-  swayLevel = 8
+}else if(intensity > 100){
+  swayLevel = 12
 }
 
   ellipse(100,100,20);
