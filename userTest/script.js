@@ -141,7 +141,7 @@ function draw() {
 
   fill(0,0,0)
   sway = map(intensity,0,70,25,5)
-  ellipse(30,30,sway)
+  ellipse(40,40,sway)
 
 
 
