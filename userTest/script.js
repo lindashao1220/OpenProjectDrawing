@@ -299,9 +299,9 @@ function draw() {
 
  fill(50,50,100)
   sway = map(intensity,0,100,10,15)
-if (sway < 10){
+if (sway < 5){
   swayLevel = 15
-}else if(sway > 10 && sway < 100){
+}else if(sway > 5 && sway < 100){
   swayLevel = 4
 }else{
   swayLevel = 2
