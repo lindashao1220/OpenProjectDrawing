@@ -98,7 +98,7 @@ class Petal {
     push();
     translate(this.x, this.y);
     // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + sin(frameCount / (swayLevel + noise(this.index)))));
+    rotate(radians(this.angle-90 + 2*sin(frameCount / (swayLevel + noise(this.index)))));
     stroke(this.color);
     fill(this.color)
     // replace this by nice petal
@@ -299,10 +299,10 @@ function draw() {
 
   sway = map(intensity,0,100,10,15);
 
-if (intensity < 90){
+if (intensity < 20){
   swayLevel = 1000
-}else if(intensity > 90){
-  swayLevel = 4
+}else if(intensity > 20){
+  swayLevel = 8
 }
 
 
