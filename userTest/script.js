@@ -85,6 +85,8 @@ let soundDetected = false;
 
 let hong, lu, lan;
 
+let sway;
+
 //particle system
 let ps = new ParticleSystem();
 
@@ -257,6 +259,9 @@ if (y < height/4) {
   
 }
 
+//swayying a little
+sway = map(intensity, 0, 70,25,5);
+
 class Petal {
   constructor(angle,radius,color,size,index) {
     this.angle = angle;
@@ -285,7 +290,7 @@ class Petal {
     push();
     translate(this.x, this.y);
     // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
+    rotate(radians(this.angle-90 + sin(frameCount / (sway + noise(this.index)))));
     stroke(this.color);
     fill(this.color)
     // replace this by nice petal
