@@ -138,7 +138,7 @@ function draw() {
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
 
-  
+
   fill(0,0,0)
   sway = map(intensity,0,70,25,5)
   ellipse(30,30,sway)
@@ -458,8 +458,7 @@ function permission() {
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
-                    intensity = Math.sqrt((event.acceleration.x * event.acceleration.x + event.acceleration.y * event.acceleration.y) / 2);
-                    intensity = Math.pow(-event.acceleration.x, 1/10) + Math.pow(-event.acceleration.y, 1/10);
+                    intensity = (event.acceleration.x*event.acceleration.x + event.acceleration.y*event.acceleration.y)*2;
                     document.getElementById("intensity").innerHTML = intensity;
                 });
             }
