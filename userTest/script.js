@@ -138,6 +138,8 @@ function draw() {
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
 
+  
+  fill(0,0,0)
   sway = map(intensity,0,70,25,5)
   ellipse(30,30,sway)
 
