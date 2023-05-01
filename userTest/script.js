@@ -171,7 +171,7 @@ if (y < height/4) {
   fill(hong,lu,lan);
   // ellipse(mouseX, mouseY, 30, 30);
   
- if (averageFrequency > -95) {
+ if (averageFrequency > -70) {
     if (!soundDetected) {
       counts++;
       soundDetected = true;
