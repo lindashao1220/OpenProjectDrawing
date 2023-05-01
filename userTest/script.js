@@ -307,7 +307,7 @@ if (intensity < 5){
   swayLevel = 2
 }
 
-  ellipse(50,50,40)
+  ellipse(100,50,40)
 
 
 
