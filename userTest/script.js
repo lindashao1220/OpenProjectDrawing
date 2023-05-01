@@ -298,7 +298,7 @@ function draw() {
   y = map(b, -80, 80, 0, height);
 
  fill(50,50,100)
-  sway = map(intensity,0,100,10,15)
+  sway = map(intensity,0,100,10,15);
 if (sway < 5){
   swayLevel = 15
 }else if(sway > 5 && sway < 100){
