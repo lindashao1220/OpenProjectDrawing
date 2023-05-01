@@ -297,7 +297,7 @@ function draw() {
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
 
- fill(20,100,50)
+ fill(100,100,100)
   sway = map(intensity,0,100,10,15);
 if (intensity < 0.1){
   swayLevel = 1000
@@ -467,7 +467,7 @@ function permission() {
                 window.addEventListener('devicemotion', (event) => {
                     document.getElementById("acc_x").innerHTML = event.acceleration.x;
                     document.getElementById("acc_y").innerHTML = event.acceleration.y;
-                    intensity = (event.acceleration.x*event.acceleration.x + event.acceleration.y*event.acceleration.y)*1000;
+                    intensity = (event.acceleration.x*event.acceleration.x + event.acceleration.y*event.acceleration.y)*10000;
                     document.getElementById("intensity").innerHTML = intensity;
                 });
             }
