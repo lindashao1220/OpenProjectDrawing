@@ -16,16 +16,16 @@ class Particle {
     this.acceleration.mult(0);
     if (y < height/4) {
     // dark green
-    this.color = color(2,115+sin(frameCount*0.03)*20,115);
+    this.color = color(2,115+sin(frameCount*0.03)*20,115,100);
   } else if (y > height/4 && y < height/2) {
     // green3, 140, 127
-    this.color = color(3,140+sin(frameCount*0.03)*20,127);
+    this.color = color(3,140+sin(frameCount*0.03)*20,127,100);
   } else if (y > height/2 && y < height/4*3) {
     //light green 169, 217, 208
-    this.color = color(169,217+sin(frameCount*0.03)*20,208);
+    this.color = color(169,217+sin(frameCount*0.03)*20,208,100);
   }else if(y > height/4*3 && y > 0) {
     // 2mibai42, 231, 220
-    this.color = color(242,231+sin(frameCount*0.03)*10,220);
+    this.color = color(242,231+sin(frameCount*0.03)*10,220,100);
   }
   }
   
@@ -306,7 +306,7 @@ if (intensity < 3.5){
 
 
 
-  ps.addParticle(x, y, random(13, 23));
+  ps.addParticle(x, y, random(8, 17));
   
   // Apply a force to all particles in the system based on the mouse position
   let mouseForce = createVector(x - width/2, y - height/2);
