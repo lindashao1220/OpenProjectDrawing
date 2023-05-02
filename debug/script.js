@@ -515,8 +515,8 @@ if (y < height/4) {
       // }
 
 
-      innerPetal[i].x = width/2 
-      innerPetal[i].y = height/2 
+      innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
+      innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
     
       // middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
       // middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
