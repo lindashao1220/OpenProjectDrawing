@@ -98,7 +98,7 @@ class Petal {
     push();
     translate(this.x-tx, this.y + ty - height/2);
     // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + 2*sin(frameCount / (swayLevel + noise(this.index)))));
+    rotate(radians(this.angle-90 + 2*sin(frameCount / (8 + noise(this.index)))));
     stroke(this.color);
     fill(this.color)
     // replace this by nice petal
