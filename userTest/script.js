@@ -340,10 +340,10 @@ if(g <= 50  && g >= -50){
 xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
-}if(g<-50){inner.isDone == true
+}if(g<-50){
  if(phase != 90){
    phase = phase + 2
- }if(phase>=90&&phase<=100){
+ }if(phase>=90 && phase<=100){
    phase = 90
  }
  // console.log(phase)
