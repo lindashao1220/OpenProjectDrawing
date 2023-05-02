@@ -340,7 +340,7 @@ if(g <= 50  && g >= -50){
 xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
-}if(g<-50){
+}if(g<-50){inner.isDone == true
  if(phase != 90){
    phase = phase + 2
  }if(phase>=90&&phase<=100){
@@ -491,31 +491,38 @@ if (y < height/4) {
     let inner = innerPetal[i];
     if (inner.isDone == true) {
       //splice
+      if (innerPetal[i].s >= 3){
+       innerPetal[i].s = sin(grow*0.01) * 10 +11; 
+      }
+      if (innerPetal[i].s < 3){
+        innerPetal[i].s = 2.9;
+        // grow = 0;
+      }
+      
+      if (middlePetal[i].s >= 2){
+       middlePetal[i].s = sin(grow*0.01) * 10 +11; 
+      }
+      if (middlePetal[i].s < 2){
+        middlePetal[i].s = 1.9;
+        // grow = 0;
+      }
+      
+      if (outerPetal[i].s >= 1.4){
+       outerPetal[i].s = sin(grow*0.01) * 10 +11; 
+      }
+      if (outerPetal[i].s < 1.4){
+        outerPetal[i].s = 1.3;
+        // grow = 0;
+      }
+      
       innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
       innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
-      
+      grow -= 0.1
       middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
       middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
       
       outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
       outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
-      
-      
-//     innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
-//     middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i));
-//     outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i));
-      // innerPetal.splice(i, 1); 
-      // inner.isDone = false;
-      // innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
-      // innerPetal.
-      console.log(innerPetal.length)
-    
-      
-      //append new 12 petals to innerPetal and display
-      
-      
-//       innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
-//       innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
     }
       // console.log(innerPetal.length)
   }
