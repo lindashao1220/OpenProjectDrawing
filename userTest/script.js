@@ -96,7 +96,7 @@ class Petal {
   
   display() {
     push();
-    translate(this.x, this.y);
+    translate(this.x-tx, this.y + ty - height/2);
     // rotate(radians(this.angle-90));
     rotate(radians(this.angle-90 + 2*sin(frameCount / (swayLevel + noise(this.index)))));
     stroke(this.color);
@@ -204,7 +204,7 @@ class Petal {
   curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
   endShape();  
     
-    pop();
+  pop();
   }
   
   checkOutOfCanvas() {
@@ -262,6 +262,18 @@ let sway =0;
 let swayLevel =0;
 
 
+ //stemmm
+ var yCenter;  //y coordinate of center
+ var yStick; 
+ var xShift;
+ var yShift;
+ 
+ var phase;  //frames over time
+ var period;
+ var tx;
+ var ty;
+
+
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
 // window.mobileAndTabletcheck = function() {
@@ -281,6 +293,15 @@ let swayLevel =0;
 
 function setup() {
   createCanvas(350, 640);
+    //stem 
+    yStick = 356;
+    yCenter = 660 - yStick;
+    
+    phase = 0;
+    period = 360; //6s * 60frames/s
+  
+    
+
   hong = 255; //red
   lu = 255; //green
   lan = 255; //blue  
@@ -292,6 +313,7 @@ function setup() {
 }
 
 function draw() {
+//swayyyy
   background(255);
 
   x = map(g, -80, 80, 0, width);
@@ -305,7 +327,70 @@ if (intensity < 1000){
   swayLevel = 8
 }
 
+//stem
+push()
+push();
+phase = phase + 1.8;
+if (phase >= period) {
+ phase = 0;
+}
 
+if(g >= 50 && g >= 50){
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+}else if(g<-50){
+ if(phase != 90){
+   phase = phase + 2
+ }if(phase>=90&&phase<=100){
+   phase = 90
+ }
+ // console.log(phase)
+
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+ 
+}else if(g>50){
+if(phase != 270){
+   phase = phase + 2
+ }if(phase >= 270 && phase <= 280){
+   phase = 270
+ }
+ // console.log(phase)
+
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+ 
+}
+// translate(width/2 - xShift, yCenter - yShift);
+
+//draw stick
+stroke(0);
+noFill();
+// bezier(0,0,0,0,xShift,yStick/10 + yShift, xShift, yStick + yShift); 
+
+pop()
+
+
+translate(width/2 - xShift, height/2 - yShift);
+
+//draw stick
+stroke(0);
+noFill();
+bezier(0,0,0,0,xShift,yStick/3 + yShift,xShift,yStick + yShift);
+tx = bezierTangent(0,0,xShift,xShift,0.8);
+ty = bezierTangent(0,0,yStick/3 + yShift,yStick + yShift,height*0.0007);
+
+var angle = atan2(ty,tx);
+angle -= PI/2;
+
+rotate(angle);
+
+fill(255,235,139);
+stroke(0);
+// ellipse(0,-45,90);
+pop()
+
+/////////
 
   ps.addParticle(x, y, random(11, 21));
   
