@@ -335,7 +335,7 @@ if (phase >= period) {
  phase = 0;
 }
 
-if(g <= 50 && g >= -50){
+if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
 xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
@@ -360,8 +360,16 @@ if(phase != 270){
 
 xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
- 
-}
+
+}else if(g < 2 && g > -2){
+  if(phase != 180){
+     phase = phase + 2
+   }if(phase >= 180 && phase <= 190){
+     phase = 180
+   }
+    xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+ yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down 
+ }
 
 
 // translate(width/2 - xShift, yCenter - yShift);
