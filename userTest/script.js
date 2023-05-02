@@ -515,7 +515,6 @@ if (y < height/4) {
         // grow = 0;
       }
 
-      this.x-tx, this.y + ty - height/2
 
       
       innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30 - tx;
