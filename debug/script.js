@@ -273,6 +273,7 @@ let swayLevel =0;
  var tx;
  var ty;
 
+ let grow;
 
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
@@ -512,7 +513,7 @@ if (y < height/4) {
       //   outerPetal[i].s = 1.3;
       // }
 
-      // grow -= 0.1
+      grow -= 0.1
 
 
       innerPetal[i].x = width/2 
