@@ -500,40 +500,29 @@ if (y < height/4) {
         innerPetal[i].s = 2.9;
       }
       
-      // if (middlePetal[i].s >= 2){
-      //  middlePetal[i].s = sin(grow*0.01) * 10 +11; 
-      // }
-      // if (middlePetal[i].s < 2){
-      //   middlePetal[i].s = 1.9;
-      // }
+      if (middlePetal[i].s >= 2){
+       middlePetal[i].s = sin(grow*0.01) * 10 +11; 
+      }
+      if (middlePetal[i].s < 2){
+        middlePetal[i].s = 1.9;
+      }
       
-      // if (outerPetal[i].s >= 1.4){
-      //  outerPetal[i].s = sin(grow*0.01) * 10 +11; 
-      // }
-      // if (outerPetal[i].s < 1.4){
-      //   outerPetal[i].s = 1.3;
-      // }
+      if (outerPetal[i].s >= 1.4){
+       outerPetal[i].s = sin(grow*0.01) * 10 +11; 
+      }
+      if (outerPetal[i].s < 1.4){
+        outerPetal[i].s = 1.3;
+      }
 
 
       innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
       innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
     
-      // middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
-      // middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
+      middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
+      middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
       
-      // outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
-      // outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
-
-
-      
-      // innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
-      // innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
-    
-      // middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
-      // middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
-      
-      // outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
-      // outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
+      outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
+      outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
     }
       // console.log(innerPetal.length)
   }
