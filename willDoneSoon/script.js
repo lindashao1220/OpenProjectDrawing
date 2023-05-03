@@ -70,8 +70,10 @@ class ParticleSystem {
 
 
 
+
+
 class Petal {
-  constructor(angle,radius,color,size,index) {
+  constructor(angle,radius,color,size,index,grow) {
     this.angle = angle;
     this.radius = radius;    
     this.x = width/2 + cos(radians(this.angle)) * radius;
@@ -79,11 +81,12 @@ class Petal {
     this.color = color;
     this.s = size;
     this.floating = true;
-    this.speedX = random(2, 5);
-    this.speedY = random(1, 2);
+    this.speedX = 0;
+    this.speedY = 0;
     this.shapeType = "circle";
     this.index = index
     this.isDone = false;
+    this.grow = grow
   }
   
    display1() {
@@ -96,9 +99,9 @@ class Petal {
   
   display() {
     push();
-    translate(this.x-tx, this.y + ty - height/2);
+    translate(this.x, this.y);
     // rotate(radians(this.angle-90));
-    rotate(radians(this.angle-90 + 2*sin(frameCount / (8 + noise(this.index)))));
+    rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
     stroke(this.color);
     fill(this.color)
     // replace this by nice petal
@@ -204,7 +207,7 @@ class Petal {
   curveVertex((201-185+3)/this.s,(349-219+10)/this.s);
   endShape();  
     
-  pop();
+    pop();
   }
   
   checkOutOfCanvas() {
@@ -218,12 +221,35 @@ class Petal {
     }
   }
   
- move(){
+  reset() {
+    this.x = width/2 + cos(radians(this.angle)) * this.radius;
+    this.y = height/2 + sin(radians(this.angle)) * this.radius;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.isDone = false;
+    // this.s = 2;
+    this.s = this.grow + 2
+  }
+
+  startMove() {
+    this.speedX = random(2, 5);
+    this.speedY = random(1, 2);
+  }
+
+  move() {
     this.x += this.speedX;
     this.y -= this.speedY;
- }
+    // if (this.s > 1.0) {
+     if (this.s > this.grow) {
+      this.s = this.s - 0.01;
+    }
+   }
   
 }
+
+
+
+
 
 
 
@@ -238,6 +264,7 @@ let outerPetal = [];
 let lastCircleTime = 0;
 let curCircle = 0;
 
+let pcounts = 0;
 let counts = 0;
 let soundDetected = false;
 
@@ -307,9 +334,9 @@ function setup() {
   lu = 255; //green
   lan = 255; //blue  
   for (let i = 0; i < 12 ; i++) {
-    innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i));
-    middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i));
-    outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i));
+    innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i, 2.3));
+    middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i, 1.7));
+    outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i, 1.2));
   }
 }
 
@@ -466,66 +493,64 @@ if (y < height/4) {
     curCircle = (curCircle+1) % 12;
     lastCircleTime = currTime;
   }
+
+
+  let numDone = 0;
+  for (let i=0; i < innerPetal.length; i++) {
+    if (innerPetal[i].isDone == true) {
+      numDone++;
+    }
+  }
+  if (numDone == innerPetal.length) {
+    for (let i=0; i < innerPetal.length; i++) {
+      innerPetal[i].reset();
+    }    
+    for (let i=0; i < middlePetal.length; i++) {
+      middlePetal[i].reset();
+  }
+    for (let i=0; i < outerPetal.length; i++) {
+      outerPetal[i].reset();
+  }
+
+  }
+
+
   for (let i = 0; i < innerPetal.length; i++) {
-      innerPetal[i].checkOutOfCanvas();
     // if (i !== curCircle) {
       // circles[i].display1();
+      innerPetal[i].move();
+      innerPetal[i].checkOutOfCanvas();
       innerPetal[i].display();
+      middlePetal[i].move();
+      middlePetal[i].checkOutOfCanvas();
       middlePetal[i].display();
+      outerPetal[i].move();
+      outerPetal[i].checkOutOfCanvas();
       outerPetal[i].display();
     // console.log(counts)
-  
-    
-    if(counts == 3){
-      innerPetal[i].move();
-    }
-    if(counts == 2){
-       middlePetal[i].move();
-    }
-    if(counts == 1){
-      outerPetal[i].move();
-    }   
-    // } 
   }
-  
-    for (let i = innerPetal.length - 1; i >= 0; i--) {
-    let inner = innerPetal[i];
-    if (inner.isDone == true) {
-      grow -= 0.1
-  
-      if (innerPetal[i].s >= 3){
-       innerPetal[i].s = sin(grow*0.01) * 10 +11; 
-      }
-      if (innerPetal[i].s < 3){
-        innerPetal[i].s = 2.9;
-      }
-      
-      if (middlePetal[i].s >= 2){
-       middlePetal[i].s = sin(grow*0.01) * 10 +11; 
-      }
-      if (middlePetal[i].s < 2){
-        middlePetal[i].s = 1.9;
-      }
-      
-      if (outerPetal[i].s >= 1.4){
-       outerPetal[i].s = sin(grow*0.01) * 10 +11; 
-      }
-      if (outerPetal[i].s < 1.4){
-        outerPetal[i].s = 1.3;
-      }
 
 
-      innerPetal[i].x = width/2 + cos(radians(360/12) *i) * 30;
-      innerPetal[i].y = height/2 + sin(radians(360/12) *i) * 30;
-    
-      middlePetal[i].x = width/2 + cos(radians(360/12) *i ) * 26;
-      middlePetal[i].y = height/2 + sin(radians(360/12) *i ) * 26;
-      
-      outerPetal[i].x = width/2 + cos(radians(360/12) *i ) * 22;
-      outerPetal[i].y = height/2 + sin(radians(360/12) *i ) * 22;
+
+
+  if (counts != pCounts) {
+    if(counts % 3 == 0 && counts > 0){
+      for (let i=0; i < innerPetal.length; i++) {
+        innerPetal[i].startMove();
+      }
     }
-      // console.log(innerPetal.length)
-  }
+    if(counts % 3 == 2){
+      for (let i=0; i < middlePetal.length; i++) {
+        middlePetal[i].startMove();
+      }
+    }
+    if(counts % 3 == 1){
+      for (let i=0; i < outerPetal.length; i++) {
+        outerPetal[i].startMove();
+      }
+    }
+    pCounts = counts;
+}
   
   
 }
