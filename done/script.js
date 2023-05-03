@@ -333,7 +333,7 @@ if(window.mobileAndTabletcheck()){
 
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  let canvas = createCanvas(windowWidth,windowHeight);
   canvas.parent("canvasContainer");
     //stem 
     yStick = 356;
@@ -565,10 +565,8 @@ if (y < height/4) {
     }
     pCounts = counts;
 }
-  
-  
+    
 }
-
 
 
 
@@ -591,7 +589,6 @@ function permission() {
             .then( response => {
             // (optional) Do something after API prompt dismissed.
             if ( response == "granted" ) {
-                // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("interface").style.display = "block";
 
