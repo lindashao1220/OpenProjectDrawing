@@ -304,7 +304,7 @@ window.mobileAndTabletcheck = function() {
 };
 
 if(window.mobileAndTabletcheck()){
-    mainText.innerHTML = "🪴dandelion✨";
+    mainText.innerHTML = "🪴Dandelion✨";
     document.getElementById("getGyroAccess").style.display = "block";
     startButton.addEventListener("click", permission)
 
