@@ -304,12 +304,12 @@ window.mobileAndTabletcheck = function() {
 };
 
 if(window.mobileAndTabletcheck()){
-    mainText.innerHTML = "🪴Dandelion✨";
+    mainText.innerHTML = "Dandelion🪴";
     document.getElementById("getGyroAccess").style.display = "block";
     startButton.addEventListener("click", permission)
 
 }else{
-    mainText.innerHTML = "Please visit this website on your phone🌱 Remember to blow it out using your microphone✨";
+    mainText.innerHTML = "✨please blow the dandelion on your phone🌱";
 }
 
 
@@ -338,7 +338,7 @@ function setup() {
 
 function draw() {
 //swayyyy
-  background(255);
+  background(230, 223, 217);
 
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
