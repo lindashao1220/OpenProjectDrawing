@@ -574,6 +574,8 @@ function permission() {
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("interface").style.display = "block";
 
+                document.getElementById("debug").style.display = "none";
+
                 window.addEventListener('deviceorientation', (event) => {
                     a = event.alpha;
                     b = event.beta;
