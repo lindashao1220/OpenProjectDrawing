@@ -573,8 +573,7 @@ function permission() {
             if ( response == "granted" ) {
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("interface").style.display = "block";
-
-                document.getElementById("debug").style.display = "none";
+                document.getElementById("debugbutton").style.display = "none";
 
                 window.addEventListener('deviceorientation', (event) => {
                     a = event.alpha;
