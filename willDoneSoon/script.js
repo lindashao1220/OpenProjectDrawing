@@ -232,7 +232,7 @@ class Petal {
   }
 
   startMove() {
-    this.speedX = random(2, 5);
+    this.speedX = random(3, 6);
     this.speedY = random(1, 2);
   }
 
@@ -241,7 +241,7 @@ class Petal {
     this.y -= this.speedY;
     // if (this.s > 1.0) {
      if (this.s > this.grow) {
-      this.s = this.s - 0.01;
+      this.s = this.s - 0.04;
     }
    }
   
@@ -315,7 +315,7 @@ let swayLevel =0;
 
 
 function setup() {
-  createCanvas(350, 640);
+  createCanvas(windowWidth,windowHeight);
     //stem 
     yStick = 356;
     yCenter = 660 - yStick;
@@ -461,7 +461,7 @@ if (y < height/4) {
   fill(hong,lu,lan);
   // ellipse(mouseX, mouseY, 30, 30);
   
- if (averageFrequency > -80) {
+ if (averageFrequency > -85) {
     if (!soundDetected) {
       counts++;
       soundDetected = true;
