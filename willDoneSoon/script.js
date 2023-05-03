@@ -99,7 +99,7 @@ class Petal {
   
   display() {
     push();
-    translate(this.x, this.y);
+    translate(this.x-tx, this.y + ty - height/2);
     // rotate(radians(this.angle-90));
     rotate(radians(this.angle-90 + sin(frameCount / (10 + noise(this.index)))));
     stroke(this.color);
@@ -246,10 +246,6 @@ class Petal {
    }
   
 }
-
-
-
-
 
 
 
