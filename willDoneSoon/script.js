@@ -264,7 +264,7 @@ let outerPetal = [];
 let lastCircleTime = 0;
 let curCircle = 0;
 
-let pcounts = 0;
+let pCounts = 0;
 let counts = 0;
 let soundDetected = false;
 
@@ -300,7 +300,6 @@ let swayLevel =0;
  var tx;
  var ty;
 
- let grow = 10;
 
 //check if the device is the phone
 // from: https://stackoverflow.com/a/14301832
