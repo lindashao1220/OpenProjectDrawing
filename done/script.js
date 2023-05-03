@@ -309,7 +309,7 @@ if(window.mobileAndTabletcheck()){
     startButton.addEventListener("click", permission)
 
 }else{
-    mainText.innerHTML = "Please visit this website on your phone🌱 Remember to blow it using your microphone✨";
+    mainText.innerHTML = "Please visit this website on your phone🌱 Remember to blow it out using your microphone✨";
 }
 
 
