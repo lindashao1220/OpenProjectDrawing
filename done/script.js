@@ -334,6 +334,7 @@ if(window.mobileAndTabletcheck()){
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  canvas.parent("canvasContainer");
     //stem 
     yStick = 356;
     yCenter = 660 - yStick;
@@ -592,6 +593,7 @@ function permission() {
             if ( response == "granted" ) {
                 // document.getElementById("gyro-text").innerHTML = "Ready.";
                 document.getElementById("getGyroAccess").style.display = "none";
+                document.getElementById("interface").style.display = "block";
 
                 window.addEventListener('deviceorientation', (event) => {
                     a = event.alpha;
