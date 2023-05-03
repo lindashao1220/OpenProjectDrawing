@@ -241,7 +241,7 @@ class Petal {
     this.y -= this.speedY;
     // if (this.s > 1.0) {
      if (this.s > this.grow) {
-      this.s = this.s - 0.04;
+      this.s = this.s - 0.08;
     }
    }
   
