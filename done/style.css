@@ -19,7 +19,7 @@
 }
 
 #interface{
-    display: none;
+    display: block;
 }
 
 #debug{
