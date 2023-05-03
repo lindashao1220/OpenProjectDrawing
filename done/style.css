@@ -23,6 +23,11 @@
     display: none;
 }
 
+#main{
+    text-align: center;
+    justify-content: center;
+}
+
 #debug{
     display: flex;
     flex-direction: column;
