@@ -338,7 +338,7 @@ function setup() {
 
 function draw() {
 //swayyyy
-  background(230, 223, 217);
+  background(255);
 
   x = map(g, -80, 80, 0, width);
   y = map(b, -80, 80, 0, height);
