@@ -304,7 +304,7 @@ window.mobileAndTabletcheck = function() {
 };
 
 if(window.mobileAndTabletcheck()){
-    mainText.innerHTML = "🪴";
+    mainText.innerHTML = "🪴✨";
     document.getElementById("getGyroAccess").style.display = "block";
     startButton.addEventListener("click", permission)
 
@@ -573,7 +573,6 @@ function permission() {
             if ( response == "granted" ) {
                 document.getElementById("getGyroAccess").style.display = "none";
                 document.getElementById("interface").style.display = "block";
-                document.getElementById("mainText").style.display = "block";
 
                 window.addEventListener('deviceorientation', (event) => {
                     a = event.alpha;
