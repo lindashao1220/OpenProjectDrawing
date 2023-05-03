@@ -476,7 +476,7 @@ if (y < height/4) {
     //display
     innerPetal[curCircle].color = color(hong,lu+sin(frameCount*0.03)*20,lan);
     middlePetal[curCircle].color = color(hong+random(20),lu-random(50),lan+random(30));
-    outerPetal[curCircle].color = color(hong-random(20),lu+random(50),lan-random(30));
+    outerPetal[curCircle].color = color(hong-random(50),lu+random(50)-random(30),lan-random(30));
      // outerPetal[curCircle].color = color(random(255), random(255), random(255));
     
     //display1
