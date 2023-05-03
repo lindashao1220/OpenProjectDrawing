@@ -1,4 +1,3 @@
-
 #startButton{
     width:100%;
     height:50px;
@@ -14,22 +13,13 @@
     display: none;
 }
 
-#sound-interface{
-    display: none;
-}
-
-#onoff{
-    display: flex;
-}
-#onoff button{
-    width: 100%;
-    height: 70px;
-    font-size: 1em;
-}
-
 #debugbutton{
     width: 25%;
     height: 50px;
+}
+
+#interface{
+    display: none;
 }
 
 #debug{
@@ -39,6 +29,7 @@
     display: none;
     /* align-items: center; */
 }
+
 #debug>*{
     width: 100%;
 }
@@ -48,49 +39,6 @@
     font-weight: bold;
 }
 
-#hertzDisplay{
-    text-align: center;
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 3em;
-}
-
-.slider-wrapper{
-    display: flex;
-    flex-direction: row;
-
-    margin-bottom: 20px;
-}
-.slider-wrapper:first-of-type{
-    margin-top: 25px;
-    
-}
-.slider-wrapper p{
-    width:15%;
-    text-align: center;
-  
-}
-.slider-wrapper .filler{
-    width:15%;
-}
-
 .limit-range{
     width:70%;
-}
-
-#shareWrapper{
-    margin-top: 200px;
-    margin-bottom: 200px;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    /* outline: 1px solid black; */
-}
-
-#shareWrapper p{
-    font-family: monospace;
-}
-#shareWrapper img{
-    width: 60%;
 }
