@@ -228,7 +228,7 @@ class Petal {
     this.speedY = 0;
     this.isDone = false;
     // this.s = 2;
-    this.s = this.grow + 2
+    this.s = this.grow + 7
   }
 
   startMove() {
