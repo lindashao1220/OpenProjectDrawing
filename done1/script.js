@@ -360,13 +360,12 @@ if (phase >= period) {
 }
 
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
-if((x > -50 && x < -1) || (x > 1 && x < 50)){
+if((x >= -50 && x <= -1) || (x >= 1 && x <= 50)){
 xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
-
 }
 
-if(g<1 && g>-1){
+if(g < 1 && g > -1){
   if(phase != 180){
     phase = phase + 5
   }if(phase>=180 && phase<=190){
@@ -376,7 +375,7 @@ if(g<1 && g>-1){
   yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 }
 
-if(g<-50){
+if(g < -50){
  if(phase != 90){
    phase = phase + 5
  }if(phase>=90 && phase<=100){
@@ -388,7 +387,7 @@ xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 }
 
-if(g>50){
+if( g> 50){
 if(phase != 270){
    phase = phase + 5
  }if(phase >= 270 && phase <= 280){
@@ -400,20 +399,7 @@ xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
 }
-// if(g < 2 && g > -2){
-//   if(phase != 180){
-//      phase = phase + 2
-//    }if(phase >= 180 && phase <= 190){
-//      phase = 180
-//    }
-//     xShift = 50*sin(2*PI*phase/period); 
-//  yShift = 2*(1 + cos(4*PI*phase/period));  
-//  }
 
-
-// translate(width/2 - xShift, yCenter - yShift);
-
-//draw stick
 stroke(0);
 noFill();
 // bezier(0,0,0,0,xShift,yStick/10 + yShift, xShift, yStick + yShift); 
