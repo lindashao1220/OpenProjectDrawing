@@ -359,11 +359,13 @@ if (phase >= period) {
  phase = 0;
 }
 
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //i
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
-if((x >= -50 && x <= -1) || (x >= 1 && x <= 50)){
-xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
-yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
-}
+// if((x >= -50 && x <= -1) || (x >= 1 && x <= 50)){
+// xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+// yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+// }
 
 if(g < 1 && g > -1){
   if(phase != 180){
