@@ -359,37 +359,35 @@ if (phase >= period) {
  phase = 0;
 }
 
-xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
-yShift = 2*(1 + cos(4*PI*phase/period));  //i
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
-// if((x >= -50 && x <= -1) || (x >= 1 && x <= 50)){
-// xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
-// yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
-// }
+if(g <= 50  && g >= -50){
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
-if(g < 1 && g > -1){
-  if(phase != 180){
-    phase = phase + 5
-  }if(phase>=180 && phase<=190){
-    phase = 180
-  }
-}
-
-if(g < -50){
+}if(g<-50){
  if(phase != 90){
-   phase = phase + 5
+   phase = phase + 2
  }if(phase>=90 && phase<=100){
    phase = 90
  }
-}
+ // console.log(phase)
 
-if( g> 50){
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+ 
+}if(g>50){
 if(phase != 270){
-   phase = phase + 5
+   phase = phase + 2
  }if(phase >= 270 && phase <= 280){
    phase = 270
  }
+ // console.log(phase)
+
+xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+
 }
+
 
 stroke(0);
 noFill();
