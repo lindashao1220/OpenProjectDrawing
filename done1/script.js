@@ -377,7 +377,7 @@ if(g < 1 && g > -1){
 
 if(g < -50){
  if(phase != 90){
-   phase = phase + 5
+   phase = phase + 1.4
  }if(phase>=90 && phase<=100){
    phase = 90
  }
@@ -385,7 +385,7 @@ if(g < -50){
 
 if( g> 50){
 if(phase != 270){
-   phase = phase + 5
+   phase = phase + 1.4
  }if(phase >= 270 && phase <= 280){
    phase = 270
  }
