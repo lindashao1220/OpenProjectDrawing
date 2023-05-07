@@ -360,11 +360,7 @@ if (phase >= period) {
 }
 
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
-if(g<1&& g>-1){
-  xShift = g * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
- yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
-}
-else if(g <= 50  &&  g >= -50){
+if(g <= 50  &&  g >= -50){
 xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
