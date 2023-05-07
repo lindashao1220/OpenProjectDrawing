@@ -369,7 +369,7 @@ yShift = 2*(1 + cos(4*PI*phase/period));  //i
 
 if(g < 1 && g > -1){
   if(phase != 180){
-    phase = phase + 1.8
+    phase = phase + 1.3
   }if(phase>=180 && phase<=190){
     phase = 180
   }
