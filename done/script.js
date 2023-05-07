@@ -369,7 +369,6 @@ yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
    phase = phase + 2
  }if(phase>=90 && phase<=100){
    phase = 90
-  navigator.vibrate(1000);
  }
  // console.log(phase)
 
@@ -381,7 +380,6 @@ if(phase != 270){
    phase = phase + 2
  }if(phase >= 270 && phase <= 280){
    phase = 270
-     navigator.vibrate(1000);
  }
  // console.log(phase)
 
