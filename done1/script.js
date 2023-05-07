@@ -361,8 +361,7 @@ if (phase >= period) {
 
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
 if(g <= 50  && g >= -50){
-let wu = Math.abs(g);
-xShift = wu * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+xShift = g * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
 }if(g<-50){
