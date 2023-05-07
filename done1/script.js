@@ -360,20 +360,23 @@ if (phase >= period) {
 }
 
 // if(g <= 50 && g >= 2 && g >= -50 && g <= -2){
-if(g<=1&& g>=-1){
+if(g <= 50  &&  g >= -50 && g> 1 && g<-1){
+xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+
+}
+
+if(g<=1 && g>=-1){
   if(phase != 180){
     phase = phase + 5
   }if(phase>=180 && phase<=190){
     phase = 180
   }
-  xShift = g * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
- yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
+  xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
+  yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 }
-if(g <= 50  &&  g >= -50 && g> 1 && g<-1){
-xShift = 50 * sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
-yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
-}if(g<-50){
+if(g<-50){
  if(phase != 90){
    phase = phase + 5
  }if(phase>=90 && phase<=100){
@@ -383,8 +386,9 @@ yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
 
 xShift = 50*sin(2*PI*phase/period); //amplitude = 200pxs, 4s a round
 yShift = 2*(1 + cos(4*PI*phase/period));  //imitate some up and down
- 
-}if(g>50){
+}
+
+if(g>50){
 if(phase != 270){
    phase = phase + 5
  }if(phase >= 270 && phase <= 280){
