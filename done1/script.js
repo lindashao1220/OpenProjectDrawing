@@ -329,10 +329,10 @@ function setup() {
   hong = 255; //red
   lu = 255; //green
   lan = 255; //blue  
-  for (let i = 0; i < 12 ; i++) {
-    innerPetal.push(new Petal((360/12) * i, 30, color(0), 3, i, 2.3));
-    middlePetal.push(new Petal((360/12) * i + 10, 26, color(0), 2, i, 1.7));
-    outerPetal.push(new Petal((360/12) * i + 18, 22, color(0), 1.4, i, 1.2));
+  for (let i = 0; i < 15 ; i++) {
+    innerPetal.push(new Petal((360/15) * i, 30, color(0), 3, i, 2.3));
+    middlePetal.push(new Petal((360/15) * i + 10, 26, color(0), 2, i, 1.7));
+    outerPetal.push(new Petal((360/15) * i + 18, 22, color(0), 1.4, i, 1.2));
   }
 }
 
@@ -421,10 +421,9 @@ var angle = atan2(ty,tx);
 angle -= PI/2;
 
 rotate(angle);
-
-fill(255,235,139);
-stroke(0);
-// ellipse(0,-45,90);
+fill(r,g,b);
+noStroke();
+ellipse(0,-1.5,4);
 pop()
 
 /////////
@@ -486,7 +485,7 @@ if (y < height/4) {
     // innerPetal[curCircle].shapeType = "rectangle";
     // }
     
-    curCircle = (curCircle+1) % 12;
+    curCircle = (curCircle+1) % 15;
     lastCircleTime = currTime;
   }
 
