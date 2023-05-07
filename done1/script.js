@@ -421,7 +421,7 @@ var angle = atan2(ty,tx);
 angle -= PI/2;
 
 rotate(angle);
-fill(r,g,b);
+fill(hong,lu,lan);
 noStroke();
 ellipse(0,-1.5,4);
 pop()
