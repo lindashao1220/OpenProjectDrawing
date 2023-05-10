@@ -536,7 +536,21 @@ if (y < height/4) {
     }
     pCounts = counts;
 }
-    
+
+
+let showText = true;
+let u = millis();
+
+if (u >= 10000) {
+  showText = false;
+}
+if (showText) {
+  fill(0)
+  textSize(17);
+  textAlign(CENTER, CENTER);
+  text("⬇️try blowing with the microphone⬇️", width/2, height-30);
+}
+
 }
 
 
