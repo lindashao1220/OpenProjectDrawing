@@ -541,14 +541,15 @@ if (y < height/4) {
 let showText = true;
 let u = millis();
 
-if (u >= 10000) {
+if (u >= 15000) {
   showText = false;
 }
 if (showText) {
   fill(0)
-  textSize(17);
+  textSize(20);
   textAlign(CENTER, CENTER);
-  text("⬇️try blowing with the microphone⬇️", width/2, height-30);
+  text("⬇️try blowing the microphone⬇️", width/2, height-25);
+  text("✨try sway a little✨", width/3.5, 50);
 }
 
 }
