@@ -545,7 +545,7 @@ if (u >= 15000) {
   showText = false;
 }
 if (showText) {
-  fill(0)
+  fill(0);
   textSize(15);
   textAlign(CENTER, CENTER);
   text("⬇️try blowing the microphone⬇️", width/2, height-25);
