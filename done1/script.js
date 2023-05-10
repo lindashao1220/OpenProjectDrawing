@@ -546,10 +546,10 @@ if (u >= 15000) {
 }
 if (showText) {
   fill(0)
-  textSize(20);
+  textSize(15);
   textAlign(CENTER, CENTER);
-  text("⬇️try blowing the dandelion using microphone⬇️", width/2, height-25);
-  text("✨try sway a little✨", width/2, height-25);
+  text("⬇️try blowing the microphone⬇️", width/2, height-25);
+  text("✨try sway a little✨", width/3, 50);
 }
 
 }
