@@ -549,7 +549,7 @@ if (showText) {
   textSize(15);
   textAlign(CENTER, CENTER);
   text("⬇️try blowing the microphone⬇️", width/2, height-25);
-  text("✨try sway a little✨", width/3, height/10);
+  text("✨try sway a little✨", width/3, height/11);
 }
 
 }
