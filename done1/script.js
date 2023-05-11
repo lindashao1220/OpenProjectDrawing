@@ -88,7 +88,7 @@ class Petal {
     this.isDone = false;
     this.grow = grow
     this.blowImpact = 0;
-    this.threshold = random(100, 500);
+    this.threshold = random(100, 300);
   }
   
    display1() {
@@ -247,7 +247,7 @@ class Petal {
     this.speedY = 0;
     this.isDone = false;
     this.blowImpact = 0;
-    this.threshold = random(100, 500);
+    this.threshold = random(100, 300);
     // this.s = 2;
     this.s = this.grow + 10
   }
@@ -482,7 +482,7 @@ if (y < height/4) {
 //   }
 
 if (averageFrequency > -100) { // -100 to -70
-  let impact = map(averageFrequency, -100, -60, 0, 30);
+  let impact = map(averageFrequency, -100, -60, 0, 20);
   for(let i = 0; i < outerPetal.length; i++){
     outerPetal[i].blowImpact += impact;
   }
