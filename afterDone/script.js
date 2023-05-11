@@ -84,7 +84,7 @@ class Petal {
     this.isDone = false;
     this.grow = grow;
     this.blowImpact = 0;
-    this.threshold = random(100, 500);
+    this.threshold = random(40, 500);
   }
   
   checkImpact(){
