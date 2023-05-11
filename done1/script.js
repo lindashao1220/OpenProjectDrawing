@@ -88,7 +88,7 @@ class Petal {
     this.isDone = false;
     this.grow = grow
     this.blowImpact = 0;
-    this.threshold = random(100, 200);
+    this.threshold = random(100, 500);
   }
   
    display1() {
@@ -247,7 +247,7 @@ class Petal {
     this.speedY = 0;
     this.isDone = false;
     this.blowImpact = 0;
-    this.threshold = random(100, 200);
+    this.threshold = random(100, 500);
     // this.s = 2;
     this.s = this.grow + 10
   }
