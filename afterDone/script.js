@@ -91,13 +91,6 @@ class Petal {
     this.threshold = random(100, 200);
   }
   
-   display1() {
-    if (this.shapeType === "circle") {
-      ellipse(this.x, this.y, 50, 50);
-    } else {
-      rect(this.x, this.y, 50, 50);
-    }
-  }
   checkImpact(){
     if(this.blowImpact > this.threshold){
       this.startMove();
@@ -485,6 +478,8 @@ if (averageFrequency > -100) { // -100 to -70
   let impact = map(averageFrequency, -100, -60, 0, 20);
   for(let i = 0; i < outerPetal.length; i++){
     outerPetal[i].blowImpact += impact;
+    innerPetal[i].blowImpact += impact;
+    middlePetal[i].blowImpact += impact;
   }
   // if (!soundDetected) {
   //   counts++;
@@ -547,12 +542,16 @@ if (averageFrequency > -100) { // -100 to -70
       outerPetal[i].display();
     // console.log(counts)
   }
+
   outerPetal[0].debugDisplay();
 
 
   
       for (let i=0; i < outerPetal.length; i++) {
         outerPetal[i].checkImpact();
+        innerPetal[i].checkImpact();
+        middlePetal[i].checkImpact();
+
       }
 
 //   if (counts != pCounts) {
