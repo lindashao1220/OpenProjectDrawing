@@ -471,7 +471,7 @@ if (y < height/4) {
 //   }
 
 if (averageFrequency > -100) { // -100 to -70
-  let impact = map(averageFrequency, -100, -60, 0, 10);
+  let impact = map(averageFrequency, -100, -60, 0, 15);
   for(let i = 0; i < outerPetal.length; i++){
     outerPetal[i].blowImpact += impact;
     innerPetal[i].blowImpact += impact;
@@ -535,7 +535,7 @@ if (averageFrequency > -100) { // -100 to -70
     // console.log(counts)
   }
 
-  outerPetal[0].debugDisplay();
+  // outerPetal[0].debugDisplay();
   // outerPetal[1].debugDisplay();
 
 
