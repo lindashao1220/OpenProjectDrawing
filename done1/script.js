@@ -87,8 +87,6 @@ class Petal {
     this.index = index
     this.isDone = false;
     this.grow = grow
-    this.blowImpact = 0;
-    this.threshold = random(100, 200);
   }
   
    display1() {
@@ -98,27 +96,10 @@ class Petal {
       rect(this.x, this.y, 50, 50);
     }
   }
-  checkImpact(){
-    if(this.blowImpact > this.threshold){
-      this.startMove();
-    }
-  }
-  debugDisplay(){
-    push();
-    translate(this.x-tx, this.y + ty - height/2);
-
-    text(this.blowImpact, 0, 0);
-    text(this.threshold, 0, 10);
-    pop();
-  }
   
   display() {
     push();
     translate(this.x-tx, this.y + ty - height/2);
-
-    // text(this.blowImpact, 0, 0);
-    // text(this.threshold, 0, 10);
-
     // rotate(radians(this.angle-90));
     rotate(radians(this.angle-90 + sin(frameCount / (7 + noise(this.index)))));
     stroke(this.color);
@@ -246,8 +227,6 @@ class Petal {
     this.speedX = 0;
     this.speedY = 0;
     this.isDone = false;
-    this.blowImpact = 0;
-    this.threshold = random(100, 200);
     // this.s = 2;
     this.s = this.grow + 10
   }
@@ -327,7 +306,8 @@ window.mobileAndTabletcheck = function() {
 if(window.mobileAndTabletcheck()){
     mainText.innerHTML = "Dandelion🪴";
     document.getElementById("getGyroAccess").style.display = "block";
-    startButton.addEventListener("click", permission);
+    startButton.addEventListener("click", permission)
+
 }else{
     mainText.innerHTML = "✨please blow the dandelion on your phone🌱";
 }
@@ -471,27 +451,14 @@ if (y < height/4) {
   fill(hong,lu,lan);
   // ellipse(mouseX, mouseY, 30, 30);
   
-//  if (averageFrequency > -85) { // -100 to -70
-
-//     if (!soundDetected) {
-//       counts++;
-//       soundDetected = true;
-//     }
-//   } else {
-//     soundDetected = false;
-//   }
-
-if (averageFrequency > -100) { // -100 to -70
-  let impact = map(averageFrequency, -100, -60, 0, 20);
-  for(let i = 0; i < outerPetal.length; i++){
-    outerPetal[i].blowImpact += impact;
+ if (averageFrequency > -85) { // -100 to -70
+    if (!soundDetected) {
+      counts++;
+      soundDetected = true;
+    }
+  } else {
+    soundDetected = false;
   }
-  // if (!soundDetected) {
-  //   counts++;
-  //   soundDetected = true;
-  // }
-} 
-
   // console.log(counts)
   let currTime = millis();
   if (currTime - lastCircleTime > circleInterval) {
@@ -547,32 +514,28 @@ if (averageFrequency > -100) { // -100 to -70
       outerPetal[i].display();
     // console.log(counts)
   }
-  outerPetal[0].debugDisplay();
 
 
-  
-      for (let i=0; i < outerPetal.length; i++) {
-        outerPetal[i].checkImpact();
+
+
+  if (counts != pCounts) {
+    if(counts % 3 == 0 && counts > 0){
+      for (let i=0; i < innerPetal.length; i++) {
+        innerPetal[i].startMove();
       }
-
-//   if (counts != pCounts) {
-//     if(counts % 3 == 0 && counts > 0){
-//       for (let i=0; i < innerPetal.length; i++) {
-//         innerPetal[i].startMove();
-//       }
-//     }
-//     if(counts % 3 == 2){
-//       for (let i=0; i < middlePetal.length; i++) {
-//         middlePetal[i].startMove();
-//       }
-//     }
-//     if(counts % 3 == 1){
-//       for (let i=0; i < outerPetal.length; i++) {
-//         outerPetal[i].startMove();
-//       }
-//     }
-//     pCounts = counts;
-// }
+    }
+    if(counts % 3 == 2){
+      for (let i=0; i < middlePetal.length; i++) {
+        middlePetal[i].startMove();
+      }
+    }
+    if(counts % 3 == 1){
+      for (let i=0; i < outerPetal.length; i++) {
+        outerPetal[i].startMove();
+      }
+    }
+    pCounts = counts;
+}
 
 
 let showText = true;
