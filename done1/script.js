@@ -482,7 +482,7 @@ if (y < height/4) {
 //   }
 
 if (averageFrequency > -100) { // -100 to -70
-  let impact = map(averageFrequency, -100, -60, 0, 10);
+  let impact = map(averageFrequency, -100, -60, 0, 30);
   for(let i = 0; i < outerPetal.length; i++){
     outerPetal[i].blowImpact += impact;
   }
