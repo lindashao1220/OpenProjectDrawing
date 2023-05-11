@@ -80,11 +80,11 @@ class Petal {
     this.speedX = 0;
     this.speedY = 0;
     this.shapeType = "circle";
-    this.index = index
+    this.index = index;
     this.isDone = false;
-    this.grow = grow
+    this.grow = grow;
     this.blowImpact = 0;
-    this.threshold = random(100, 200);
+    this.threshold = random(100, 500);
   }
   
   checkImpact(){
