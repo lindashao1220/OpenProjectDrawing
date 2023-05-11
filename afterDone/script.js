@@ -544,6 +544,7 @@ if (averageFrequency > -100) { // -100 to -70
   }
 
   outerPetal[0].debugDisplay();
+  outerPetal[1].debugDisplay();
 
 
   
