@@ -84,7 +84,7 @@ class Petal {
     this.isDone = false;
     this.grow = grow;
     this.blowImpact = 0;
-    this.threshold = random(40, 500);
+    this.threshold = random(10, 500);
   }
   
   checkImpact(){
@@ -477,10 +477,6 @@ if (averageFrequency > -100) { // -100 to -70
     innerPetal[i].blowImpact += impact;
     middlePetal[i].blowImpact += impact;
   }
-  // if (!soundDetected) {
-  //   counts++;
-  //   soundDetected = true;
-  // }
 } 
 
   // console.log(counts)
@@ -582,7 +578,7 @@ if (showText) {
   textSize(17);
   textAlign(CENTER, CENTER);
   text("⬇️try blowing the microphone⬇️", width/2, height-25);
-  text("✨try sway a little✨", width/3, 50);
+  text("✨try swaying a little✨", width/3, 50);
 }
 
 }
