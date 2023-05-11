@@ -544,7 +544,6 @@ if (averageFrequency > -100) { // -100 to -70
         outerPetal[i].checkImpact();
         innerPetal[i].checkImpact();
         middlePetal[i].checkImpact();
-
       }
 
 //   if (counts != pCounts) {
