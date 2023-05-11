@@ -68,10 +68,6 @@ class ParticleSystem {
   }
 }
 
-
-
-
-
 class Petal {
   constructor(angle,radius,color,size,index,grow) {
     this.angle = angle;
