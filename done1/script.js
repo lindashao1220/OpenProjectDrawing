@@ -103,13 +103,22 @@ class Petal {
       this.startMove();
     }
   }
-  
-  display() {
+  debugDisplay(){
     push();
     translate(this.x-tx, this.y + ty - height/2);
 
     text(this.blowImpact, 0, 0);
     text(this.threshold, 0, 10);
+    pop();
+  }
+  
+  display() {
+    push();
+    translate(this.x-tx, this.y + ty - height/2);
+
+    // text(this.blowImpact, 0, 0);
+    // text(this.threshold, 0, 10);
+
     // rotate(radians(this.angle-90));
     rotate(radians(this.angle-90 + sin(frameCount / (7 + noise(this.index)))));
     stroke(this.color);
@@ -318,8 +327,7 @@ window.mobileAndTabletcheck = function() {
 if(window.mobileAndTabletcheck()){
     mainText.innerHTML = "Dandelion🪴";
     document.getElementById("getGyroAccess").style.display = "block";
-    startButton.addEventListener("click", permission)
-
+    startButton.addEventListener("click", permission);
 }else{
     mainText.innerHTML = "✨please blow the dandelion on your phone🌱";
 }
@@ -539,6 +547,7 @@ if (averageFrequency > -100) { // -100 to -70
       outerPetal[i].display();
     // console.log(counts)
   }
+  outerPetal[0].debugDisplay();
 
 
   
