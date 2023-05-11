@@ -68,10 +68,6 @@ class ParticleSystem {
   }
 }
 
-
-
-
-
 class Petal {
   constructor(angle,radius,color,size,index,grow) {
     this.angle = angle;
@@ -84,22 +80,34 @@ class Petal {
     this.speedX = 0;
     this.speedY = 0;
     this.shapeType = "circle";
-    this.index = index
+    this.index = index;
     this.isDone = false;
-    this.grow = grow
+    this.grow = grow;
+    this.blowImpact = 0;
+    this.threshold = random(10, 250);
   }
   
-   display1() {
-    if (this.shapeType === "circle") {
-      ellipse(this.x, this.y, 50, 50);
-    } else {
-      rect(this.x, this.y, 50, 50);
+  checkImpact(){
+    if(this.blowImpact > this.threshold){
+      this.startMove();
     }
+  }
+  debugDisplay(){
+    push();
+    translate(this.x-tx, this.y + ty - height/2);
+
+    text(this.blowImpact, 0, 0);
+    text(this.threshold, 0, 10);
+    pop();
   }
   
   display() {
     push();
     translate(this.x-tx, this.y + ty - height/2);
+
+    // text(this.blowImpact, 0, 0);
+    // text(this.threshold, 0, 10);
+
     // rotate(radians(this.angle-90));
     rotate(radians(this.angle-90 + sin(frameCount / (7 + noise(this.index)))));
     stroke(this.color);
@@ -227,6 +235,8 @@ class Petal {
     this.speedX = 0;
     this.speedY = 0;
     this.isDone = false;
+    this.blowImpact = 0;
+    this.threshold = random(50, 250);
     // this.s = 2;
     this.s = this.grow + 10
   }
@@ -306,8 +316,7 @@ window.mobileAndTabletcheck = function() {
 if(window.mobileAndTabletcheck()){
     mainText.innerHTML = "Dandelion🪴";
     document.getElementById("getGyroAccess").style.display = "block";
-    startButton.addEventListener("click", permission)
-
+    startButton.addEventListener("click", permission);
 }else{
     mainText.innerHTML = "✨please blow the dandelion on your phone🌱";
 }
@@ -451,14 +460,25 @@ if (y < height/4) {
   fill(hong,lu,lan);
   // ellipse(mouseX, mouseY, 30, 30);
   
- if (averageFrequency > -85) { // -100 to -70
-    if (!soundDetected) {
-      counts++;
-      soundDetected = true;
-    }
-  } else {
-    soundDetected = false;
+//  if (averageFrequency > -85) { // -100 to -70
+
+//     if (!soundDetected) {
+//       counts++;
+//       soundDetected = true;
+//     }
+//   } else {
+//     soundDetected = false;
+//   }
+
+if (averageFrequency > -100) { // -100 to -70
+  let impact = map(averageFrequency, -100, -60, 0, 15);
+  for(let i = 0; i < outerPetal.length; i++){
+    outerPetal[i].blowImpact += impact;
+    innerPetal[i].blowImpact += impact;
+    middlePetal[i].blowImpact += impact;
   }
+} 
+
   // console.log(counts)
   let currTime = millis();
   if (currTime - lastCircleTime > circleInterval) {
@@ -515,27 +535,35 @@ if (y < height/4) {
     // console.log(counts)
   }
 
+  // outerPetal[0].debugDisplay();
+  // outerPetal[1].debugDisplay();
 
 
-
-  if (counts != pCounts) {
-    if(counts % 3 == 0 && counts > 0){
-      for (let i=0; i < innerPetal.length; i++) {
-        innerPetal[i].startMove();
-      }
-    }
-    if(counts % 3 == 2){
-      for (let i=0; i < middlePetal.length; i++) {
-        middlePetal[i].startMove();
-      }
-    }
-    if(counts % 3 == 1){
+  
       for (let i=0; i < outerPetal.length; i++) {
-        outerPetal[i].startMove();
+        outerPetal[i].checkImpact();
+        innerPetal[i].checkImpact();
+        middlePetal[i].checkImpact();
       }
-    }
-    pCounts = counts;
-}
+
+//   if (counts != pCounts) {
+//     if(counts % 3 == 0 && counts > 0){
+//       for (let i=0; i < innerPetal.length; i++) {
+//         innerPetal[i].startMove();
+//       }
+//     }
+//     if(counts % 3 == 2){
+//       for (let i=0; i < middlePetal.length; i++) {
+//         middlePetal[i].startMove();
+//       }
+//     }
+//     if(counts % 3 == 1){
+//       for (let i=0; i < outerPetal.length; i++) {
+//         outerPetal[i].startMove();
+//       }
+//     }
+//     pCounts = counts;
+// }
 
 
 let showText = true;
@@ -549,7 +577,7 @@ if (showText) {
   textSize(17);
   textAlign(CENTER, CENTER);
   text("⬇️try blowing the microphone⬇️", width/2, height-25);
-  text("✨try sway a little✨", width/3, 50);
+  text("✨try swaying a little✨", width/3, 50);
 }
 
 }
