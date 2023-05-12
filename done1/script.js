@@ -501,12 +501,25 @@ if (averageFrequency > -100) { // -100 to -70
 
 
   let numDone = 0;
+  // for (let i=0; i < innerPetal.length; i++) {
+  //   if (innerPetal[i].isDone == true) {
+  //     numDone++;
+  //   }
+  // }
+
   for (let i=0; i < innerPetal.length; i++) {
     if (innerPetal[i].isDone == true) {
       numDone++;
     }
+    if(middlePetal[i].isDone == true){
+      numDone++;
+    }
+    if(outerPetal[i].isDone == true){
+      numDone++;
+    }
   }
-  if (numDone == innerPetal.length) {
+
+  if (numDone == innerPetal.length * 3) {
     for (let i=0; i < innerPetal.length; i++) {
       innerPetal[i].reset();
     }    
